@@ -1,10 +1,19 @@
+концерт
+погода
+бедност
+сащ срещу босна и херцеговина
+usa vs bosnia and herzegovina
+bnt 1
+novak djokovic
+слънчево изригване
+белгия сенегал
+belgium vs senegal
 mexico vs ecuador
 мексико еквадор
 лаура кьовеши
 fifa world cup games
 france
 франция швеция
-bnt 1
 hm
 франция срещу швеция
 france vs sweden
@@ -40,7 +49,6 @@ portugal vs colombia
 колумбия срещу португалия
 египет иран
 нова зеландия срещу белгия
-бедност
 иран
 александър усик
 flashscore
@@ -90,11 +98,3 @@ england vs ghana
 марица
 мохамед салах
 weather
-керем актюркоглу
-плаж
-ивана
-задръстване
-козлодуй
-тунис япония
-еквадор кюрасао
-столична
