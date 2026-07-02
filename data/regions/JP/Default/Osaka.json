@@ -1,0 +1,50 @@
+{
+  "region_name": "Japan (Osaka)",
+  "google_module": {
+    "base_lat": 34.6937,
+    "base_lon": 135.5023,
+    "lang_params": "hl=ja&gl=JP",
+    "valid_url_suffix": "co.jp"
+  },
+  "trust_module": {
+    "white_urls": [
+      "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9qVVNEcWx6S25CUTRFR0p5YUFlSU5PUVVFSTdtNkZUNGZUekp6REN0RjFudHRPQUt4UjUyRG1DSnp6VkVaTTNPeWo1M2liaDAzUzJrZGo5VDdCZjNxSnZoQkZUYVZsZw?oc=5",
+      "https://news.google.com/rss/articles/CBMif0FVX3lxTFB1WV9TVktCbFBCVzkweGtyemlZNFNGVWJkUm9DZ0ljU1VSbWRsZDZyZnFGRXJld2cydzE2X2ZBOFpuZmFZRUowMHhtckZwRE02cnQtYlFZYk5yRVB1NTA0TGM3Q2h0bHZ3N181OTcyLXo1dWxoWExILVhhOGxDRGc?oc=5",
+      "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1QVWxaMnpibFRKUDBwaHk3V0FXLVpJcHZoZnZXMjA5OXYzaVBJTG1CVzNFc05nVnVFamhlM1lFR0h6SGxwR1JUMFRORTB4Y1dPcEFWTW1xV29CeEYwdFNDSGsyZUNrUQ?oc=5",
+      "https://news.google.com/rss/articles/CBMibEFVX3lxTE9IaVpnMmhiRlNNMUFLRVotQUg3OFZOSGt2c0V4QVJSV0o3SGtPNWZKYXNyWUFmWk90NEhpUFRmcjh1OGd1Ynl4RDNZWFUxclFWYnRWV2hNQ2llRWV3V1VuNDZCenNwME5qN3Qwcw?oc=5",
+      "https://www.yahoo.co.jp/",
+      "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5UaV80OHd6Q2NsSzNLWldyX2dJYVFzZEU3NmczZXNyX3FUQXZMY05jZnpkLWVJNXZsd3lXUElmb0tNMnFoUHFNNEN1MVRzR0NLX0NSamRWT2VvSE53bGJET2o5VUZsSlZn?oc=5",
+      "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5vc1dwUUJ5Q2gyMzNUUkk5aG5FRXN3TGhJZnk2aWRVa1B1M0UzdG44Z0JOQXltbjFEbVZvdmR4dFUxVlhMbEdoZG0zWW5kdDJrby1UY0JSbzVodVloeC1qaDl1bXNTUjg?oc=5",
+      "https://news.google.com/rss/articles/CBMidkFVX3lxTE5JWmNMM3Y5S3ZiUDU4RHNuZ0ZybDdjb2JoMm4xQmVyMlpBTWlZZjJnU3FubmlLajFsVU1JYklyNkV2eG5ZVnVHdkF5TlFSVHAyNEFWLWtfb25JemxKVGRGRk0wT1MwSDU2ckhaOUczbXBqMnFfMnc?oc=5",
+      "https://news.google.com/rss/articles/CBMibEFVX3lxTE8zeVRzNC1PaUhuVS1UanEyR0pHSU9STVhHQnJtVE12QS15N3dzMmFWNG9BdlB6N05FZ0I0alUwSkYwM0RyazVjbHE1SzBzcG1ZYzhOT1lGYjJobGZzSGQyTnhXdHR2d1FVckhzRg?oc=5",
+      "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1QRVM3UFZ6TFVXS3FkemczOEphSXBJWmE1ZFJ3Tnp4dUJYQURyTm9xOFJtbFJPek9raGQ5bHotY1R2Mmd5ZkZwY3ZkMTVkMzdmV2MtR19hSHNpMHBWV1R5M24tbW8?oc=5",
+      "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5qdngzM2FESndRdER0eE1oMUFySUFoakg2d2lJNWpuT183c3p3N3RFakM1YVBTUHE5SHVSLVhIQnJpTVJFN09mREh3ZzZxYVFQSE9zLQ?oc=5",
+      "https://news.google.com/rss/articles/CBMickFVX3lxTFB6VjN5NDdPWG9md3dEZkFxNEpiVWZYN3hla3dDcml4VzZ6WEN6RlRDMFNKMzJCcmY4Ym13ZTBQbC1zQ05sYUUzRXdxdlNLdXpYSDZjUWZuNDJqVkZMb3pFZmtuMjZuQlBLVUR5d1VOYW15QQ?oc=5",
+      "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9BY0tyRnlxeVkyekxFVmtEY2NBVVY3ZnZrYjdXdmxEQVJKdzl4QVBlUHNYdk9VZEZNOGc0YnMtSzRZQmx2RTFzbWlxNUhfVFFCTHV4U1h2aFZkTTlDeHYxbGRJYjBwdw?oc=5",
+      "https://www.nhk.or.jp/",
+      "https://news.google.com/rss/articles/CBMiV0FVX3lxTFBuRXhaV0l2eUtvczVOX3phVEZnSWVyalM0Y3NTeHdTSHZxTUhONGRBdk1TOVdFMmJHQk1DVGpfRnczUTlsRzdvUUVNaTF5dlZsak56czBHZw?oc=5",
+      "https://news.google.com/rss/articles/CBMiakFVX3lxTE9RSDFMUzdkWnVmRjZ5SGdOMGh1RFpFSW82bThUUk50ejFpWWhObUlkd0hmZVd5TGJ4X1A1QkNpWVVBaEttTURyR2ZsSzB0MWRUTVp6MUJKS2pZeE5aZkp4R3lpLWc3OUpDV1HSAW9BVV95cUxNeVZFYmwxRXJHS3NKcW1ZanlJd3pIMkJ1WlYxWGFyUThCZExCcTFYbUhycnJ4ZG9EY0N2ZlZ4SUhQUmE5bHFJQXkzQ1h6RndZZXBybWFjU1M4VVZTX05HaDV0ODBMRjBCYl90MzNPZXM?oc=5",
+      "https://www.rakuten.co.jp/",
+      "https://news.google.com/rss/articles/CBMibEFVX3lxTE9EWlZYbUxHb0lCQXNXbnFaOF93SXZMUjBDaklUMi1ER09qSXdvWkZkV0FsOEFqWW5md1lNMDhOOXBOMm4xcnRKRS1vYV9rcTdVb1lhTDRBcGNVNEVaclZGaG5JTUJNUGNtamlDZw?oc=5",
+      "https://news.google.com/rss/articles/CBMidkFVX3lxTFBWNXZxTDZtRUtETGJyNTJuckpESHJneEl2WHZyanJpdUwwaXgtejJjcjQ0elZSaXBsbHRBYnFYeU5PT0FzTF94cFlQbHNnc1ExTE52YnZ1NjlYS1RNV3dSR0dncUlaV1Q4Tk8xRWVwM0RzcWFpeWc?oc=5",
+      "https://www.japan.go.jp/",
+      "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBKRkNON1dKUVZGT0JvUXhZOURKYlpRejVQcVdfTjZKazFqa0VUeFBLZzlOczRoRUY4Z1J5b1gxeXNka2pzM2xwVVJjWk12azB3QmM5dmRQclNSUzVUU191LXRPcEIwcFE?oc=5",
+      "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5oSV9HT01FX2ZjRlpZRHhIcGFaVzkyODlRMk9JUHNqRnRIcmctMWVldFhSN1NZdU9rMW5yMGZFWFhOc3pvTEFaOTYyczJpU09jc0lmRQ?oc=5",
+      "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5ueGlQYUN1SzFNS1ZIS2Z2cWtWbHFYaGtLZml2Nk4zQ1EzeFRtUTVoODlCX3lVUE1PMWIyM2lqWWtPaElyamJ0NXNJU2d3NXBrMFo5V2xn?oc=5",
+      "https://news.google.com/rss/articles/CBMiTEFVX3lxTFBKcnRFdGthNkZPcFhVMWwwck9pRklUcnYxM3RMSWNLUzhvdEFVT1NCQWU4bWZTVlBJcFNzaEhDMUxBVS04RXQ2VnhGSHI?oc=5",
+      "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1SVHA3LXFyVkdNNXd2WEd2cXQ0Wk1sV3Q5T2dUeG9RUXZReTBSZmxlbk5NbWV6aHZQMkJEbDdYdEVvMFNQTGo5UzFtVGlUNzNhZENDSGw3SklIekZzOG5lY3pxQkpqN2Ju?oc=5",
+      "https://news.google.com/rss/articles/CBMidkFVX3lxTE1iNzJmZlZoaW1LTnRqNjlDSkJXOEt3RmlHUTYyYjhYSWFWTTlDa3NrZ3FkTzZKU2lFN3h4SnZnVk8zTV94dmtPVnk4aWczY1NnMmhyZXVyTWZwcUpydk9pdkRGRURTZGIyMmtxMXRLdmlCbWdGWHc?oc=5",
+      "https://www.jnto.go.jp/",
+      "https://news.google.com/rss/articles/CBMia0FVX3lxTE9Uc3pGc1ozS0hNRUUzNUlNdGFNdEFLU2RZY093MVVUVDRFbGhFdUdTZU5wWUVPU29kQlphcERfZVFubmk3ZWltNGx0b2xyOFAyenBiNWNCWVFHVW10dHRVRmJmdzd5M1FlanlN0gFwQVVfeXFMTkhYaHVmVTJHeXZzMHNEd1N0RkFqU3I4cDJMM1Uyc2s2ZG41UmZZVXgzMTRtV1NxUnJhM2ROc3g5SkJfSmFSZGVBZ1lwR1BmTmdWMWliNS14OVZaN0pBZFp4ZFRxdXVqQ2VCNnlrS0NqUg?oc=5",
+      "https://news.google.com/rss/articles/CBMiS0FVX3lxTE0wRXNIWm4yeXpNaFJnaXhWUmhTREpNbUZoUjUyVEdkam5WbjhXa1BDS0tTM0NzaEJNNWpRcm93WDVXRi1DRGNXbkViQdIBR0FVX3lxTFBfQlF6TjhkaFhKZHkzUVFZY1dhNXpwdUF2bERPZHhUSExqTEoyN216MjdDM1hfN3pqMjhwNnEwT1N1M2Nial9N?oc=5",
+      "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9rd1I2TUlTakIyRVpqQ1lyRl82bVNSX2dFbjE2VWhxNGk4bGJPb2FNTGZpaTYzR045OV9PVXFrTTRxWmFRY3BFYkpZalhfUmEwNTdxVi1HZkJvT21mMnI00gFkQVVfeXFMUGFCTlZRU25vbEpBbkJ4Y0MwbjRGaUw2Wml6eTdBUDJlcncxS3hscW9IVmh6blFxVy02OV9EaV96T3RJa2ZqekthWkh6Nm4xV3dqc0xJVlVsZmtmZWE5Q2dEV0dINQ?oc=5"
+    ],
+    "static_urls": [
+      "https://www.japan.go.jp/",
+      "https://www.nhk.or.jp/",
+      "https://www.yahoo.co.jp/",
+      "https://www.rakuten.co.jp/",
+      "https://www.jnto.go.jp/"
+    ]
+  }
+}

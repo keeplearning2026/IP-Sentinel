@@ -1,0 +1,52 @@
+{
+  "region_name": "USA (Hawaii - Honolulu)",
+  "google_module": {
+    "base_lat": 21.3069,
+    "base_lon": -157.8583,
+    "lang_params": "hl=en-US&gl=US",
+    "valid_url_suffix": "com"
+  },
+  "trust_module": {
+    "white_urls": [
+      "https://news.google.com/rss/articles/CBMiekFVX3lxTE1neFp5Nk14WE45eEhZR25UUVgxV1pfOWJLT25Xbi04VnFBZW5VaXd0UnExSkh1YUQ0aTZWRXJmSnpyenpPNXlienJhNWx4RFB0RDl4ejdPTnJydm5jSC13eDRud3pzQ05XRENTdnFMZTJZblJFaTZPSS130gF_QVVfeXFMTkdGa0lTaGtMRzBqR0gyS3JqSXJRZHJHVXN3SmZvdWY1cjdxZ3VIQjRiaGNvWE9UOVBnNGJMNVB3TW5QSVZBckp2VTNTTl9mZzFsY3hTN2JuV0YyRWNtVnlueE1Jclh6endsM0RKbjJDRi1nTWh5TDZjNzZYcUNGVQ?oc=5",
+      "https://news.google.com/rss/articles/CBMirwFBVV95cUxQRjZPOUppZGxCYk0wZHFLcWZCQzYwV3J6YWNjR2d0cGl1eGJRejN6NGFIN3UzNC1JUnJaeGtodm9neUJDTE9RUTJRZEhwNHcwWkk3RjVrU0V1RkdtQXQ0LVhwcG4xSnh2Yk5RckRIa3V6dFNSVnBPQXBXbjI3ejZxUVhEc0tMWnF0UFBJMDFWLTVabS0tdGtLVTk4ZGFmMS1Hd0J1ZkhUbmZueXROaXow?oc=5",
+      "https://news.google.com/rss/articles/CBMikwFBVV95cUxQcG1RYzhsWFo0R0lmQld6SXF2Q3l3WmdnX2VwU2x1Q2g2RHp1dXNQWmFRTktPNGpCdVVTc25uRlI2SjA3WXVPNlVMMDVSQjFMU0V1Q3ZPeXdQUktCYm1QNldZcjRyMjdpZHFib1MweVN2a1FYNnVuZmhHRGl5UjhBOVZhZG1tVTNhYTdBZWRhNURkaDA?oc=5",
+      "https://news.google.com/rss/articles/CBMiqgFBVV95cUxORGFpR2dvbVZhblhrLWNWQjZ5WkFYdVRtYlQxTHJocFM4QWdSMEVpXzJjTy1GYzFxYi1sRWR0SmhSeWt0TFNUdVBZR2FJSG5ReVBZeDBTZ3hyQ0U3ODVvRlZtX1hObDgzcFpYaVJEelUzSVBValZuU1dzRUJmeWNwa2JYQjZtTENPM3ZRd1Y4WXJtVGxGb1l1TTI1MmdrMW1OcjQ4bFVDZXNwUQ?oc=5",
+      "https://health.hawaii.gov/",
+      "https://news.google.com/rss/articles/CBMihwFBVV95cUxOMWNqTm9mX0lhRWVFSElPSGVoamhzX3k3R3BCd2NvTFdaQUZ2c0R1b3hWWmYxc0wxN2JRUUZOaU5adElHTWJpeUZxNUUxVjVYQ1J6YjF1c2l1Y2xQbkc1WGstR0V0b0g0WEh1SlJJNlhJMnNuQ3NHNy1oc1B4YkMzQ1lQQmNjWWM?oc=5",
+      "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5rTlV4dXlWWEpSaFFSY0MxNC1qSS00eHFkZS1mckJtaTdOVGcyODRqNnRoei0yWDVXZDNsMkdMUmh0ZEY3bjJmeFVLY0U0eE1PSGJHc253cVNyNzljOFE?oc=5",
+      "https://news.google.com/rss/articles/CBMi6gFBVV95cUxPanRRem1yc3NvUDM0cERXNzNkVFlxUU1BTW03WVFiTC1fQjlnc051aVBaOFg5WHJOQmVJVFNmNlFwV2hfak0tUm11NGNReURVUTAwZnI5YjhpelFRb2dFVVJzRlA1dTN1MmJDdW52ZHlmZFRiM2JFRDk4d1dfalIzX05obkNzVERyVkpFWC1xa2RFcGpZRmk4NHpYQnEtamhGZFduWThuel9xRHhIUVgxbUdzendtNE5ja0RfTzVJZnBSLUpMekpvc0ptdVIzYTlfMFd3QzlpOEVNOU56YzRhdF9CTmZGV21pV0E?oc=5",
+      "https://news.google.com/rss/articles/CBMicEFVX3lxTE5QeWIwX0ZRckpRVTN3UkMyRklQNjVMalZwcmtHb1B5QWIwX0lyZ1NHQURTSlBaMm0tOEFmaUdsbTRuYkRVWkNMQzdsamlTNXp0VmZKd1dubFZUbi1ScVpVbzJRLUJsWkw4cE1mMHA4ZDc?oc=5",
+      "https://news.google.com/rss/articles/CBMigAFBVV95cUxPS3VTV2w5M09PcUVSSnAxYUJ0U0RManpPeWNJbU9aYmljV1c0QzlNUW5XN3JCTWxtQ2FRT1FaaFBpeUdxdG40ZExkWjFUX0pPZVBXOGo3XzdMR3dDVFBQY0dDZ3VnYzhSTnZEcnJtOTl1S05XOWhnUnlwUWJUUkxUYQ?oc=5",
+      "https://news.google.com/rss/articles/CBMidkFVX3lxTE5lY1ZYN0pjeHNPS1V2STkxc0luMjVoVDRCM2ktZ29RMmhpWFZpVnJiM2pLYkZjUU5pNHNEay1Hd3RBcm1COFozTjZ3LWlJMHZPV1V2RmFNNlN1Z0dFbzlKd1JJU1FWVl9yNGpodTJTU25CVlU3MHc?oc=5",
+      "https://news.google.com/rss/articles/CBMipgFBVV95cUxQLUlYck4wV2hSNVJQOVhvdUNZZmpMenNJU0VvQWMyT3FhWlRoWFFzYVRub3J6YkpvS2RIcnNOYTNUZGdVcVIzRnlJUFN6S2NfUV9CcDhHWGd1eDRVQXM0WjVyX1BYSzRZZmJENTZFXzFPRXZyMmNJNThoZFhvUFBHZmpBcjlkRUUwTWdYWnVpUklmaUtRVWNkcU9lbjNvQlN2cGRHLU53?oc=5",
+      "https://www.apple.com/",
+      "https://news.google.com/rss/articles/CBMirgFBVV95cUxPNU9QQS15bTVCS25vQks3TWFheDBOaDh3QXJvVEtpMkFUQXVmZ1l3MUd5MkczUFZfR2lyWEJvNFAweVpoZ2NwNVRpeVJrOWd2NjZvTlJ3VnVGaVNfdllVNjNXMVZvb3BhQm0yTUZDc1JzMjRYdU1UY3FHYU9nQzVuV2VBbFppOGJ4NWN3YjFCMVhHc2FfUWhhUDcyTXd5d0RzUjZmYnhxN29iV24wcHc?oc=5",
+      "https://news.google.com/rss/articles/CBMiogFBVV95cUxQRGJFMjZyb1dwOUtna3dfU3RaY1c3b0N6WG9KMk5iMG5wQkJfM2FBd2VwMXE3MWphOWZNLWFJWUNtTHFiY2hfOFRBOUhkNTg4RFRBV0pPMnJDeGdXX3BnblR5Nmw3STlPdHY3VWR1dXUyLXdraThmUGtPdDBKZ0JoMGxJcFZkdUZhVXRyNGxuQjluQXNZTXBadExhTEs0THVnOGc?oc=5",
+      "https://www.staradvertiser.com/",
+      "https://news.google.com/rss/articles/CBMiiAJBVV95cUxOLWJBR2lRWC1IYWN3b0hEZHpNNmNaZXFueXV0aDN5R1JlLXREM0JHZUQzZERlTDRPX2hUTzJzcmZrM3pYTVczc2FDd1UwNjQ5UFJzU2tjUWFYZWxzWWo5QkhadlA2S2JBT1QzSUpiTnNVTFREdFpIZ1dnWGtuX0R3ekNPNks3YmRWQ2xmTVNrdGg4bzBFT21XS0lWcmZFbmJzWkltdUc5MEdHT3hURkRrS2FmNGdpa0hjMlJpVlg5RDVYZlo5bXc2eE9DMHhDWVQyY3NCRXZIUWY2MlhsR3h2RjBpMFA3cU9VVjBtZEItX0p3TThCSmd4eEllQzZLTi1wR2NoS2FjOHI?oc=5",
+      "https://news.google.com/rss/articles/CBMisgFBVV95cUxNYWp1TnpmVnV6ZnMtNW1OOGYwRXE3bktLTTJ4bWp5ZXVXVnhXX3lKSTQyUE90YzY3UEFHYWlHRGNiMnhPQ0FyOGhiRVlDSXBuR1kyOE9pUEk0UzN3SEo4bWRMVWpXeHNLa2VDWkotT296ZTZzTEhaUmE3Y1d2czlSLVA1WEhoREprcTlwemVwWFd2LWlVd3E5QjRCY3ZUWXQtMm96MHYwU3FWN1poT3FwV3JB?oc=5",
+      "https://news.google.com/rss/articles/CBMid0FVX3lxTE9xaUxsUEVmaWk4XzVocl9nTjJFUVZpWFdNa2YzSF9lNFJJTlRrZjhrajh4X0RSMXVNMGVZX05idUJpTS1mVW16MWNoWnUzeVZHOUc1Wk5CYW1lbElUa1JBT2NKNUJBaU1hazgtTUpub01oRDlNTEU0?oc=5",
+      "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5LZ0gwQlVJTkp3TWh2Y05aOG5yVUUtT05vRUFsb1FzVUtFOGQtYXROSm5fVzlVUTFmdUM0dHFkb2FVRi13WGZWeXdzcnNLTm5NbVdSZnVrazhVUQ?oc=5",
+      "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5RSm1OUkh3LTRJOWpwaTJyTlpqRVVBOWRGLTZIQk5ZNTYyQVdfNHJZZEo3YWhJT3YycDBGVW50T2d5dnF6TGkyejRiVm42T1VwdWswdHluSmFQUQ?oc=5",
+      "https://news.google.com/rss/articles/CBMisgFBVV95cUxQMWxZZ1pMYW9IcVhGWGhtdnc1MXFHOHhHTnZYbWMtOUUzdkVMVDV5YzBaRC1TR0FtME9mNEl3TGRKaVoyVE01Nk5vNG9mMGtGQmNpSElvU0l3WFp5bHhScGMzYVRSUTlXR3U2WHdvM2NSS3FWdlM3UzJIUTBqNVViNUlYdURyX3Y5eDU2MlhrdGtiU0hIeGo4aklmZXdZRmRlUDRRZmtLZWhoazlIUVRWdDJB?oc=5",
+      "https://www.hawaiinewsnow.com/",
+      "https://www.hawaii.gov/",
+      "https://news.google.com/rss/articles/CBMihgFBVV95cUxNWU5GeVRQNlpVV3pPNmRMY3ZqOTYwdzBpbnlzdW5LaGxIcjlQajIwUWgtb0IzRWRtUFRvUFlnbjhpeUFYa0ZxUmZ2SUQwS2QzQzhqZzl3QV94X1BfVDduWWNpT0R5TG4zdFFqSmNJV1hua0Q1UXNMM19IQ3FlbWZGdFhqSU9RZw?oc=5",
+      "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQSENTWldVZVVVS0tUWWdRNlNTVXBwZ2piRkVwRGI5a0RrckY5SHJfNlBaclJJSU03Y1hjaUJjY1V1ZUlsLWhIZ0lkeFE5UEt4cGdRZE1PODhOSlNrSUk5RWkzbWNXX2hDaVdVcnBmc0UyQ2dSNlVuVVNCWkdMVXZ1aHZMSHk0cTE0b19ZN2hoTG1ja1YxeTFLQXJFZWtyUnZVaHYxU2E4QWcxX2NzWk9yT0hJa096TnNuWWlsdUNQeHVXd2M?oc=5",
+      "https://news.google.com/rss/articles/CBMiugFBVV95cUxQVG1ucDZ5Y295WG44SXZDbzVSb1UtSVJCQ2pXcEMxZWtTc1ZsR2JodlRKdENuUDdkUE5GbE1ZTFVDQ0VRU1hkclJaYkVKM202TVktdWt1dmQ3WTNoT0VwSlZ1LUZCQURHZThTUERwbkVOQThVblhKOHNqcjVBQkV3bmdGRzFmNmloQTNRVnViTWg4NDcxRmdYSHlNSlp4UFZJeDNJWUxLbnN1RDVVZE4wOE5Fa212NUpkbnc?oc=5",
+      "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNdDlhVUdxcUdYT3FTTzUtSkxvalV3YVR4aXZESXpqZV9pMng1aGtybnFOYldlNDE4RjlyZ3g3bGpuX1RPcExvY1hmUWRweFJvM3hvVGtfSDNZOV9DM0dQRllmR18tVTZ2SWFfR0RnUUp1QlJpR3F5NFBYY3c0bzh1TnZuOW9aODZUUG1zdnBLRXQyaS1RNlFqdmttZkVDZi1oVmJ6Uk96Y3VlSjNfUjVQOGlKcXA3OTNmRlItS1g0Z1g?oc=5",
+      "https://news.google.com/rss/articles/CBMiowFBVV95cUxNT1JGMzVQVlVlZWcxMHpxQTJqaDlhcjRRSGphcGRSb3FydDZ5X0xsY3Q1NE1mRVprRlJxVDYwaHBGcWV5SkRFb3JmQnBkc0hCX25faGJWX1pxZExtVnY3ZFdkZWxSV3RzNkszX0F1eFhvMmVtcVVFQVE4c3ptZTR1UlVPTnViYm90MkZ5YXVuT3BRMm5YV2dOSDdrVG4tczhfWEw4?oc=5",
+      "https://news.google.com/rss/articles/CBMinwFBVV95cUxOZnNDTDZ1ZkZLTWFFTlZGVTRWcGV0d3VQZzgwQ18xUDNUbnFKNEJxWHhGeTNjVk5IZXFvamNJdy1uakpsR21wbEVoWUtsdFpsU01BSkN3anV4ZE1jOFlESWYzQXA3eGViYVlVMk4weF9fcVNIei1XLUxmUkRDMnVrWFRzcVJfeGFxVVhNbWxpVnhBWlhYRktRQUZHLVl4dVU?oc=5"
+    ],
+    "static_urls": [
+      "https://www.microsoft.com/",
+      "https://health.hawaii.gov/",
+      "https://www.hawaii.gov/",
+      "https://www.apple.com/",
+      "https://www.staradvertiser.com/",
+      "https://en.wikipedia.org/wiki/Special:Random",
+      "https://www.hawaiinewsnow.com/"
+    ]
+  }
+}

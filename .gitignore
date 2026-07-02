@@ -1,0 +1,21 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Config with secrets (generated at install time)
+config.conf
+*.env
+
+# Logs
+*.log
+
+# Backup files
+*.bak
+*.tmp
