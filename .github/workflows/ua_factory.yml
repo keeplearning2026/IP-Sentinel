@@ -6,6 +6,10 @@ on:
     - cron: '0 4 1 * *'
   workflow_dispatch: # 允许手动点击运行
 
+concurrency:
+  group: data-factory-main
+  cancel-in-progress: false
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
