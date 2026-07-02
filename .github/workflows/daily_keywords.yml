@@ -22,7 +22,7 @@ jobs:
           fetch-depth: 0 
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
@@ -33,16 +33,19 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          
+
           # 一揽子添加搜索词库和地区白名单的变化
           git add data/keywords/
-          
+
           # 防御机制：如果没有新数据，就静默退出，不产生空提交
           if git diff --staged --quiet; then
             echo "No changes, skipping."
             exit 0
           fi
-          
+
           # 策略：将两路数据的更新合并为一个原子提交
           git commit -m "chore(data): 🤖 自动同步全战区搜索词库 [$(date +'%Y-%m-%d')]"
+
+          # 先拉取远程最新再推送，防止与其他 workflow 冲突
+          git pull --rebase origin main
           git push origin main
