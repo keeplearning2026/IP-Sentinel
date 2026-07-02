@@ -4,7 +4,11 @@ on:
   schedule:
     # 每天 UTC 03:00 执行，为各节点全天随机拉取准备好弹药
     - cron: '0 3 * * *'
-  workflow_dispatch: 
+  workflow_dispatch:
+
+concurrency:
+  group: data-factory-main
+  cancel-in-progress: false
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
