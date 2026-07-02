@@ -1,0 +1,55 @@
+{
+  "region_name": "Australia - Brisbane",
+  "google_module": {
+    "base_lat": -27.4697,
+    "base_lon": 153.0252,
+    "lang_params": "hl=en-AU&gl=AU",
+    "valid_url_suffix": "com.au"
+  },
+  "trust_module": {
+    "white_urls": [
+      "https://news.google.com/rss/articles/CBMiqAFBVV95cUxORk5zS3BKYU9YMFFuUk5sWXZkVWhwNHhKaDlPczdoRVd6V2QzNWdzTU04SGtXLWtnTXdoTnhKU2ltM3NHSFdyZWRZeGpTcjZBSm40VVEzWGhSaVgzR0dreWhZRzhXNExCTERxN0l5ekFidTJXclNKUEYyd21WZ0taTFVRTktEZ2lsWDdxN2RSeHBaRVVPRTU1Tk4zcTBsOEc0c3ZKNWJ4MXY?oc=5",
+      "https://news.google.com/rss/articles/CBMijAFBVV95cUxORTh4T3p4Y2p2bFN4T0ZHT3J3SWhwQWtIQXFHT0h6X1ZsTk5oSHllRHVVbWNsa043Q2JZNXJ0SU1xd1VDeHdvUVNHUGR0eHNKNGtza2RVb3I4cFpQNlp4bC1qQWlVa0FLVUJJczREVE16c0NjVUFPeDRNTG5JT19YUmd6UkEzUnBSazcycQ?oc=5",
+      "https://news.google.com/rss/articles/CBMipwFBVV95cUxQR2prWHZwNS10NjNFNkZoUGZBUzktSkJpOFFpcGdqNnVTbUM3dVdsWDc3SjR3MVJpREYzbER6dHRINUhJNy1oRTBySWszc2daeDZONWpHdkZ3bEZOeDJoV1l6a3dWcnJGN3c1WmtlNWJiTEtrWnUycmZkZ21xT21HZGN5b2V6SjE5ZHF6bWllSmNnRU84dFRhTU5RYk1fUnIwaGZNQ0lmYw?oc=5",
+      "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNcGkweHR6YjY4MElCZmdJdUxPUU1LNFV3TWsyQkF3QXdLVjhVNjBHVjV6RWRvWFFHbU44U3JxRV81NGFFY2VaRVhYTXlvZlkydVNCN0hMeG1DaVVNSkNzSVpNR2lCdUVsVFFhcFFtTXdFZDZlMXVnbDR0TlpQX0dqRVZ1RTBRNGE4ZWNJeElDb21fNTlzR29jMVo1Q1RKdUN6dEllNTVDMmk5QzBPQ1FSajgtdlFNVV9WLVJN?oc=5",
+      "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1mVzM2WHlReUtRY2MzaFdWRy1iWTRvYkhKS1BiWVJ6NzNfdHBvNHREYXlFenNsMmMwVFlhbWFRaTd4Zlp1RG1md00xY21lMlBUOWZSakJpUVZIUQ?oc=5",
+      "https://news.google.com/rss/articles/CBMi9AFBVV95cUxQWkthc2d0U2Y1NVVGSkZHUG1aY0VTMktud3NQRmIxNHRsTnlyanl0aWl1LVJ0bmNZUjVDOTRzSTdndnVUeXI2bms5cTlYTjI1QVFaeVk3ZDdhOFdycEUtSG0wNEduMjdDMWhTaDVfT0VFZFhrR0JFYVRwaFQ2eC1WdFFzTDk1dTZ2THpsV0Jsc3A0cktuWk9YZjJ0ZDNVNG0yNFp6Ulh6eTVKcGZmX3dDbWJBQlMwU01FaGhRWkJPVVQ5dUxDYVk5TlF6OFF4ZjdQNVJjTldhTmZMOVNhNlhnaG1rTk5zVGNIZkVhRDRmWEZiNUhi?oc=5",
+      "https://news.google.com/rss/articles/CBMigwFBVV95cUxPZThYTzUwaVh3Q294YjlPaUtJcmRfMWpnZ21PdDdvYWhVaTNvVFRIYjlvU0xwRlFiRndzMDRHa2ZNSlIyYTlCLTJtTE5aRnV1RnF0R3BFMkF5bDdTVE5GLVoyMEpHTTQxaTN6QUNOcnp4WGtHODR3TWM1OUtTUGMzY2QtUQ?oc=5",
+      "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNUnRKRTc3TW5qd0VwbVh2T3hJOXNoaUlBQmtpdkxUcll0R2kwNGtMX1dRYzZQOVl5Xzl4MHpOakpNY1dYbXE2NjNQQ0kxRUhoVGdUMm1aRkh4eFJ3cXlNYmJxWk1hOWhIUzNzR0MySDZnWGpLOHd6Z3ptdFBBWFM3MWRmeGxhNnZ5N3c0?oc=5",
+      "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPQ2JMaWNpc3J5RmltYzgxY1RsZm1sTm56djc1WXpsUzMzRFVLOGNDaWNVQjRmMDNjWFlsSTNqYWlzdmNSZFZ5V1J3Uk5LVkdhUE5NeFhLSHBwVWxzT0tOYVJxdTUxV3Zhdm8tc2U2dFNBZmduZXdmQThXV2ZWV3hRNWZhU3ZCWUFWMTUyTkJNMVVOX25NZVhpaF9Wblc5ZDVvX196MVpWT3RVVlJuNkdqZnBBaHlqWjgwYTF3UVZTamxxRzFjUHhDNGdPMmdLWi1oR1VQdWtCeUNfR2FEX2hvS19iN2d2Tzg3NE5ia1luMXNNUQ?oc=5",
+      "https://www.ato.gov.au/",
+      "https://www.commbank.com.au/",
+      "https://news.google.com/rss/articles/CBMizgFBVV95cUxOYVE4emNfZldCSDhQTWpwQTBrZmZERTNPVG1BNzdXR3g4SXEwQzNURk1WWWxXYlo4TGRCbHhtNzIwZ2paQlhYREhVeF9kem51Y2s5N05DMUV1bXd2dWcwcGZGYnpqYVJzajc3Z0NNUVRxSWlWM19ZazRBUHBlTkxRNlVlTFFBcVhvdm15bDJuRUVjV3JCMHVyS3hYU3ZCRThoNm9mcXo2SVhBdm01N2tRUERUZ2FadHVoR0JFYXFSZUw5TGZWZkhUb09qWUt5QQ?oc=5",
+      "https://news.google.com/rss/articles/CBMiugFBVV95cUxPSzczTmFmLUxaSUJva0JWVkEzWmkxaW0yaDFSdkVRdGMwSno2SjBacVNfNDNadEFzeWZiTUZrQWR6Y29lb2tSamxibTRCYzU2SlJ5eWU0eWFld1Z4QUpPYkMxQkhaZUhjUGJaUEp4ZW9CdHZfSEx5dmpLc3R3cEVQQkxQQUoyTUVQVjR0NEdRTldYcUlNSXU1S1R4dW9XNFllZDFIdnY1eEFkRlpoNlFXQnFlVEN5MWdFQ2c?oc=5",
+      "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNb0EwcnA1SGY3YXRDUGFTNFdqcnVuS1NlV3JtbTl5Tmotdzg5a2pidXFlM3Z1ZFRuanRqZnNZSEJnLUkyQzJWQWRUU0xKM2NNVFpXSnBFOGlMa1FzQ25WQ05ta0ZrclFXMFQxN0Vxdmk5cXRfSzNDZlgxTTdtSFRFQlhSTUtDeU52LXU3UVZfTjdyaVV2eHhJN2dyRGJOamxTOFlnUGRsRU4tVzB4al9TNGhNdkVlYzFiZ1B3ZjVkSjRjRWg1RzFfWE9kMk5TR0hyaEE?oc=5",
+      "https://news.google.com/rss/articles/CBMiywFBVV95cUxQamZBbF9yc19VSXFjNlJ1a2FmU0NJOXc1Qm9wdTVicGdPZEVEdk9sZTdvRnBJdW51Y29JNThEM3BjeVpHSWV3Y3NKVTZPdUlhOXd1MWp4aTlZOTNHV0dEYWRRaHJHYjFCVjJoZkJEVW1MWE91SXJBZUEtcFZBVDh0YlJ5LWQtdFJ3YXM5a2MyNWxOdVY4UWVsdEt1WVZ2TlNMSVkyYzZmYWtfdG1vNGE3ZVdZd3ZKZU41VUdPZnN3NEozb3dwN3Q1V3NKRQ?oc=5",
+      "https://news.google.com/rss/articles/CBMisgFBVV95cUxOZFQxN3hfWnZ1cU1XM0JWYUxVcDNiV0M5VXI1SEl3VEVuSklfWDBaN3piWl9kMkVVS3N1OEh3SHVTYzlpbXhDTVJhM2g4QmZ6NVNlV1JkS0NzaUxONTVXWGxLb0ZmV0Ffam5KR25vQ0UyVk1waWExVEJIVWN3aUMwZndpVG1IUlBxejIwbWVXeU84V1BabUtFMDMwR3dkbEl4MDBHVFIwLVYzamJ2cU8tZkZ3?oc=5",
+      "https://news.google.com/rss/articles/CBMimAFBVV95cUxNbzRvai1NWnp4cGN0X1UzUkRMSjdfUHBnZkRHcUFGUU90dDB2eVBBU0M1cGxabFQtaFd6STRtblBqZkh6VVJNU1VWRDQ0djlJM2ROcVI0emtuUWRfNGpSNFJSaERqMjlaRUVJeFJTV3NXM2NzOENCbzg0aVY5dGNhUnFfVzVaSV9sRXIzTWxKbG9WRE1jV0czLQ?oc=5",
+      "https://news.google.com/rss/articles/CBMihAFBVV95cUxQeDRJMlAzakVMV3FDY2s0a0NZdGNMbWZnUHFOR1hCNnc3Y294THowZDE5M3psdVhLcHpjN3R5dUhNZ2MxT0c4MXlMRFMtM1ZVU21DMXRuZm9qcFRsOWZjekhFNXUybWF4MU1VeXM2eEhLd0xxVEJZakp6SmZ1V1djUXVkRUE?oc=5",
+      "https://news.google.com/rss/articles/CBMihAFBVV95cUxNVjhZa1BzMG9SMDJmdVZja1R1bnN3R2VUdS0xbjRQdjZJT1lqU2tKYTFVMUdRYnliYldvcl9GQUE5SFNKNTlGTzUzWDRSVk14OGZkNlpQWGtsWlYyZlRYUE5vSGdSQ0VVUHNaM3hLOFZxcElUZEhHZ1dsQVFnUVZVMlN1OWM?oc=5",
+      "https://news.google.com/rss/articles/CBMiggFBVV95cUxNVWo5Si1iZ0xDZ09Oak9oS2hRV2xoUjljT0IxRk4wQldEdkdrYmNEM3ZPNUZORGZ6Z3FncUtVQjM0NmpTMlhCWlZkMTZHMUlHZXVjd3ZDbm5vU1BxTFh4dF9ORE5wT0lQcFc0c0p2X3JxTUNwTXFlRUJsVC1tUkRUTjRR?oc=5",
+      "https://news.google.com/rss/articles/CBMi_AFBVV95cUxNelVkVDlkX1ViUmFZZ1FuQUdjdnFORnNvRDBEMmJNbjdNdlV2ZUE4NG9kV29FN04xMmxrbmFULVJhTnBycTV2QzlfbVBqaWtvcGk5bUJnMklSb2t6aTFldW9NdldCdWJrZFpUNmh1anY0N1U5MTVFZWR0NVU1cmR5REhfY0RwTzBBYmVfRWJJalQwandsMEItTG1lWEw4R1NvOGR1UmdidlZnNVFKUTJKSEs0T1E5ZEY1bV8wMzY4dVd3VWdHS3I0OTdOTE10Q0U1YmE4c2ZxUXFRZkxqWnlBQkxaWFptNWl6Q1BIZE94cFg2NzNXR3A0T0FiLTI?oc=5",
+      "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPRjd6ZGFMQnhUWjNTcXZWMWlaeUZDU2xqNlEzc24tcjBNU2ZTak9kUmc2SzdJOGpUY3NBRUhYMHVHRDFWRFhCWjkyS3gxODRtOGNVUkNhcDhDd285ZURvYU9vVy1NYkxqNHR3QUlaQmNsUk9sV2Vyd1BHSWtoWVotSVgtbjMzcnMt?oc=5",
+      "https://www.coles.com.au/",
+      "https://news.google.com/rss/articles/CBMikAFBVV95cUxQazdEWndaNGpqUjZmZVlKNmdnY0xOTnB0TVZ0RFJtUVlleEluUGFVd0FFX3BQSkVDUFZ6LXEzYXUzbTItZjdLNEMtc0hYZ0xGVk5uZGpxQ3dIekpieXprT201UDVCaDJaMEt4ZFVUa3RPTV9TdWhlVW1uS1hUN3VPV3B2Mkc4eU82WW5MZnJ3cmY?oc=5",
+      "https://news.google.com/rss/articles/CBMirgFBVV95cUxPR0QyR1M3NnRVRG5wNzdSZXMxNkRnY2d6NzhjNklKbV9tbDZfTTVUNXVxTEliTXI4VUNBMlZoejNVZ0ZFek1fOU84YVlyb3RaZURGUjZBR2ZlTHVHRzNydDZtNUhfV0JDN1FKWVUwdHRQcXVsTjlNcFhucnNlS3RwcTc3bk43LTFWLV91dmlZME1rNDZWQzlYYkRuUllmdElqbTViaGFTcDZxTUwzQ1E?oc=5",
+      "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQdzFtaW5WS3dmRUJJV01sUVFTZzJqZE9vQUlBTVd0Wi1HSlc3OFhwOGZJQUJ3bEVUazE2cjB2NmpkVjhNMzhsMVAyZUNyZmw4YUVwWUNaMzVoV2Q2bGF4U2xlalNackUtaVZXOXBmdHh2d3Mxa2VlSGxEZ1dmRFNRQkIxZEJ6ZlVYUzY4QWlBRDBfek5VLS10NE1kWmtFN2dFRE9uZ1BEbC16LU5ZeG5vU0M5Tng2TE5OenUwbjNCVXR4V29JN1FCWEZ4R1pQaFMyZ01vb1BUX1hyVnNUR1hzZmVOMFA?oc=5",
+      "https://www.realestate.com.au/",
+      "https://www.woolworths.com.au/",
+      "https://news.google.com/rss/articles/CBMirwFBVV95cUxPYVFLRHZRS1NFU3Iza0RlWk9KdVlFc3g3RU45SXRqdmNpdWlab0hFUklQY19fV3F3VHpvS0k2ck1FTWRWY3NQZC1kV2JFd3RXcmNNTFFUeWFweHh2VTVoYW5XZFRsU0ZHTlRSNkZXUVdlYlpmdXFlUm82U1NNUUZrMDBVeE9xcS0wcnRSUWNUWDJDekdHZWFhSDZxY1poeU0yS0l5b0ZMUE1DZDI4Y0Jn?oc=5",
+      "https://news.google.com/rss/articles/CBMia0FVX3lxTE1scjZNTmlLUG51NjBvRXJHWXdOR05uWHJYd212alNLeU9Ldjl1elA4eS1KN1ZrX0I3TWlPdlRrMGtJeVhOWDZKQzJSQnpSdkliSGNqTlV4WThhOFJYQmoyLVF2US1hUzZwZWhv?oc=5"
+    ],
+    "static_urls": [
+      "https://www.bom.gov.au/",
+      "https://www.seek.com.au/",
+      "https://www.bunnings.com.au/",
+      "https://www.amazon.com.au/",
+      "https://my.gov.au/",
+      "https://www.coles.com.au/",
+      "https://www.ato.gov.au/",
+      "https://www.woolworths.com.au/",
+      "https://www.realestate.com.au/",
+      "https://www.commbank.com.au/"
+    ]
+  }
+}

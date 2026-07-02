@@ -1,0 +1,53 @@
+{
+  "region_name": "Canada - Montreal",
+  "google_module": {
+    "base_lat": 45.5017,
+    "base_lon": -73.5673,
+    "lang_params": "hl=en&gl=CA",
+    "valid_url_suffix": "ca"
+  },
+  "trust_module": {
+    "white_urls": [
+      "https://news.google.com/rss/articles/CBMimgFBVV95cUxNNDFmQ2d4dmV0bEo5Xy1ERkUwQXluZWZpaUhRYV9kM2hGcUJCNkMtUzFVSHdNMmFBNXZqNGg3WWl1VVlrMVVGMmlNYUtBQXJ4THpLNm1jejJKZENGSzEySVNOUHZCNEd2MEZZTjlXbkJ6VFl2ZFdhY2g5cC1VVzFVcS00bEZtNUdVeGpGNjlSXzdQSFBySTFBNWpn?oc=5",
+      "https://news.google.com/rss/articles/CBMixgFBVV95cUxNekk1Sk1ZVU9kTDZCdUZfZzB3ckI1Ul91cWFESldpa1V4UDctZnJVZXZkcTVUcUZ5X0lQZl92UnhmWDVNeDJpeEpxZ2htZURiTnkycExZVzdxYjRWaVNYQmhPcTdoVzlVWUtudVJsOUFjTjBFUGJ4d1doUlRkZ0NYcEpaellWaEJndzkzRmlXWXRkRVNiNVluY0N1c2ttRnpMSXktY19BVmlScmJTTGdYUmJtM2tFQVd0UHVzdW00aXhyOW1DU0E?oc=5",
+      "https://news.google.com/rss/articles/CBMivgFBVV95cUxNMGVfblNpeHJYbVlZOFprZ1M4eWdXbExmZl9lNlEyMkZRb25CYllNdnNJMjRST1ppMzdOaXhEellESDBma0VpYXZMc3lLc3RRbTVWLXVvSEJXOEM0c2xQeGxhb2NrTW5obGNEOGpneGpTNFViVHNHd2JIWVZzaDBqLXhQQmVCN2VKSHJzWk1SMTAwOWVjSF8wbHZPejlVckYtdXB6SWM2azBjRWdnZ0JmbTNMOTZRYnJaYXNySERR?oc=5",
+      "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOcm9lVWFIc2Z0UGFuZ0pqdGZRdjdGNUZMMTF6cTIwVy1PVUNFSHFEU3VXbnpnQ0NHcW02Nm1TaGoxZ3p0VjFFLXdDUWh1SUxmN0stV3BRRHRGYi1ndzZNQUJTa1d3aGJTZDdickcyam54RWVHa3I2TjNxSnNEajAtOVRIWl9pQWhGUUc5aF94Y0dNMXQxRDBjNXhTV1pfOGxBZUgtUHpTbVo?oc=5",
+      "https://news.google.com/rss/articles/CBMisAFBVV95cUxNT3lHVXA3Y2IxX2FzRHlZZnFma2Jjdy1NS3dobkpZSFJua3RMaHVVa05mQno4MTN5ZWVScjNwVkdsc3lhNUpDd0NRYzduTmZyWnhPS1NKU1pEX3BKWDJUQnJDNHZwYVdaYzVLdTZwaHhQOVlLdFVRRk5UREc3aXlNZkZkR3FXVFl1Z3hFSXh3Y1FvTXJueVUxbDNuZFBfY01PWW5JVHdoQmNJOENicHBSYg?oc=5",
+      "https://news.google.com/rss/articles/CBMinwFBVV95cUxQN2dCM2J3cjB4b0lEVExycW04bjQ0SmdpWkcxNTEwWFJ0cnhNSlF6elRXYVdlY1laaF9GdkxaUEZzNk5ibVRZb0pMNjVZSEw0Q3ZNTkREaHV2N3FLZ3BoNFJxY3lwczB0N1doazZXbVBPLUl1Qk12bFBlcXpyQmxGNTlWUFhzc01RV3hQVms4S2JfYThkTzJ3LUVGN0tPX1E?oc=5",
+      "https://www.canada.ca/en.html",
+      "https://news.google.com/rss/articles/CBMingFBVV95cUxPam9NZFpEeFBNSGpTeVAxY0xOSHRJRXFXaDJYdkFSa1Q0Tm55Q1F5cWZxb3k3ZnRxZk9jQ2Y2VnItZmtaTmhhVDRBOVJzM01COTFRUWsxelg4dklOMnh3WXZTVjNhNXZRanFCMWlReDRjdm9xcUVNSkNWMUdmSmdpVWhQbzVtYjZFSU54V3cxQW1fZVJvWV9uU0UtYUtTdw?oc=5",
+      "https://news.google.com/rss/articles/CBMifkFVX3lxTFBVTk51M01mNXA5ZzZVd1U1MzdIWURxOUszSHdpck1tQnJQanlqMTV2Qzk5SFVQNU1BNS1zSlVPZTVPcEJDYURQWGktY2RQNkVsdm45Z2ZjUEgtbVc5aEhUbEU4R0tVMHZjaFpMMzQ0WC1NR1FPLXNHWnJCMF91QQ?oc=5",
+      "https://news.google.com/rss/articles/CBMisAFBVV95cUxPNVFjNWh5MUJpeDNpRy11ZkppTUNTTDQxemRwNmV0MWVrV0pOakJVYTdQUU1hXzNEZkIwVE4wOHgxaTBVNzRvTzFjX28yc3hPNjFILTc1VnBBRXRUeFJ0MmNQaENTcU0xX0MtdThrREJFdEJKYWdYa1RaTno1UUNBMHQ0aHFrWXJPRWQ0MHh3d2hlbzNnNEJHdlIwMWNwMTdpVmstVnREY1NzZ0U1MzZFaQ?oc=5",
+      "https://news.google.com/rss/articles/CBMixwFBVV95cUxQSDYtY3J0aG9kZE0xY1h1Y0tvQ2JKa0dUVVJULWQ0UWlzSkRiNTJfeVVCdjA2SVA2bnRxSXJ2T0FRSy14YWdlNG5heGpiWmtSU3pDOHVQUkptRDJXVFpVYTF1TS16aUtuVXJQdUFBQWtSTFQzaFpua2x5SkgtWEZHbkhKenB2eUFVZS0tMWZZRzhaMXNfOGtzOUZ6SFBFdXpMSllCeGZQdmFkazZ3akdQXzQ5ckpKcEgtMHpzbWc5NjRvYkt6MHhz?oc=5",
+      "https://news.google.com/rss/articles/CBMikwFBVV95cUxPT2haSVZNeHBDUnNhSDA5VW9JYnNTd2IySF9vNHlMWlhaa0xfOVFQQy1lUWZSQk4zSEJLMEY2ZEwtUGF6dmVRajk0dXh3YU9qcGJxQm91WTM5UEJaVDBGLW54Z3gtQnlMSHMzNTdhVmZHZTl5T2NkZTA3OTdMeXBqMVpqa3BOdm96OE8xZHd4aENPNEU?oc=5",
+      "https://www.rbcroyalbank.com/",
+      "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPakc2SlptRVR0WWg2ZWd5bUd6WVBLUGNvSzM5dHlOaTRsNHBsVC0yWnFUSllGRU9HeUhZVHFsVGlpU2JSSVktbERfVlViMVpjUHVEdkxINTg2YW9KNkdwOE9VdkpTUnJXODFWa1M2U2V6ZzVKM09jcXRoU3dRZkFuZWRJTDZIVVpuM0pCMlhJdU4yOERlTTZWeEE2YVdHT1BwZFJkdHgxbHh6WldMZ05PT0lTWFZpT3Jp?oc=5",
+      "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOYWhMZm9uNmN2bWhNRWdxVmdOZmtSTmVVYTd2TktwTVVRODdYX0JIa2ozR1V6VlVpdW1XSU5tend3ejlsdE5mSzNqLTM0cklackJFM1htQ1lmVnFJQ3NwSHJmVHNsRENKVU9tTEtONEpZd0lHSXJRaXR2akpFY2puODk1bmNZUUdYT01n?oc=5",
+      "https://www.utoronto.ca/",
+      "https://news.google.com/rss/articles/CBMirwFBVV95cUxQV2ZaeTF3VG5wUDlFclQ3SWZGeUZtUkIxc0tjdUI2ZFFtTkFQRTdwQXN5V1N2MGJvRnZCTWlZZ1hjTW8tNGc4dXNYTGpLYVZUUmRxclFETnVIQXBkT1Rya3BBRlEtSENGbXpzbnlTeXRWTndqRFBJNjNYd1ptUUpvLW94REJpTjhiZTh0TUV1bW1VYmt4elBpTXVTc0FmOGFjd2NKWGR5eVRBMUdiZk9F?oc=5",
+      "https://news.google.com/rss/articles/CBMifEFVX3lxTE9VU2ttQUFmOFp2RTU1QmlnZG0ycFBJdjZ2cGsxN2ttbkgwRVZOUXNuUlAwcm8yUEZGejd5LWsxR3hLc0hjbUVfWTdaWEQ4ekdrVWZWN1hKd1RPUjZ3dWJHTjhkanl5QTQ2Uk5VR2FaU29Jc0hETkFsYVBUMUs?oc=5",
+      "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNQ3NfMGU1TlpmYlYtR3hyT2FiMXRSeUpBd0pSNllpcHdMSWF1LTJsS245ZWpvbk9KT24zLV9LWHdYUlF5SXZxUHhpTzRRSDRpZEx3RW4wYnBxZjBlN3RhTFBjVFpsY0J1cXpIWGk3eWdFNXNOMmwtZWtrSzNpUDl1QVdidkxBeEdKMWV1cVJXZU9hM3NxVmRLaVYxc1VOeEZIVmpTOEhPZHJ0a0ljdVZDME5zRDFGWXFsaXpMdlFiZlFjM2tNXzByZkNBMjNFV0pCWnVRSFN0RTBmUkR4dzBpOEFBWEdkeHlzMGRPMQ?oc=5",
+      "https://news.google.com/rss/articles/CBMiugFBVV95cUxQWV8xSUFIUWp6RWFpek85a0RhNlJfUDhRSzhJU3p6VEVfTGExdF8tTExXLTFMSXpXUl9vbUh0MFhJOXhuNThXZHo5UkM0VkVLNUV0RWJZdTRPTWFWVWlrUFR3MVNCQVNmUGRKUjhCZDhJYnhQd2tiT2p0TlZkQ3pOWDFkZkJXWUlPMFp5UXM1VGpXOEM3UGJueG9QLWFRNXVYMmMzVnNuLXllTmt3ZnNNUjVMR2JGdkZLNGc?oc=5",
+      "https://news.google.com/rss/articles/CBMikwFBVV95cUxNREsxVlJiOUtEUU5Wd3c5YWVaUGg2b2o0UFl5c2NTcjc1VUtTanpMNHdNY0V0dU02ZjJXWjdyVUZHWVFZa3JKV1A2RDVoaW9KMDRYbk1JS0UyLW5BdG9xWFd3eDR5UXhfLUlDZTc3X0lGa1IxZkRGU3pqSFBiWHktRXlEcFpjbWVuSkpGeklPN0xHajg?oc=5",
+      "https://news.google.com/rss/articles/CBMiekFVX3lxTE43VEgxT05laVZNRlpaaHJza095MWdMdXV1bTNUb3hQUTZyejh2My1NTzJNdTdjaXlvYjZ2S3gtSEFoQ01DTGYxUDRQYlFVenppRnZrOU5OdERiYkF5LU91c2JIR1lXQnNxYkxkY25aUzV1LVpINVVuT05B?oc=5",
+      "https://news.google.com/rss/articles/CBMivAFBVV95cUxPVHNiQnNlTFlJR0xKaVlzS0p2cjVHRzRNTzRHZTA1emNmZHNOTXN2UldJNlIxVlZaek03bGJZdUtTeWEtZUNJSkh0RHE0X2dhRkEzMlNBS1pOaEdiT0M2V3BTNEJZVGdXS3diMjBKMHp0eFY5WE1zUklmcjRJVzZmRzlkSHpxbE5wM0VRelZIUlRqZE0wQWkzeURwLTNvX3owQTVSc2pSNFFGcUxxNTU2d3A2MzhoM0p0bXE1cw?oc=5",
+      "https://news.google.com/rss/articles/CBMitgFBVV95cUxNYUU4cHNEd09DQWdkMksySnJGbEgwcHZlMnl2SS1ZMmU4cDNuNGt1TkRCSjFnWDduWHl3V2ZPYmJJWHJ5RzQ1WFh6VG5hMUdVSWVjdXFpUGVlbEp0LVVFUnJyVHM5b3VIMDN4Z0NrZVBsNHJTeWdGV3R3MG9mS09kNXY1b3QyTV9KTC1ySXBDUmZtMXlIX3Z6bG04YXF6cHVaQUgycGtQcjNKVEFFSm1aMW9WZHFCZw?oc=5",
+      "https://news.google.com/rss/articles/CBMimAFBVV95cUxNb1NVdzdLTW5nTjJGanE2MmVSa3NrZGRlVGVHUmZhaW14X3ByODRlVUZNbXlNSV9KeC1zRk9LeXg3NTBaMWhOamo5T3F3OXJ0Qjc1dWVSVFhpY2s4RWZPQ1dlZ2U2cm8xZm1UMlBkSUJpTzMxRUF4NEZWd2ZWc201X2lCQlRqTzVBVXZBamY4XzBuVlBXQ3Jmag?oc=5",
+      "https://news.google.com/rss/articles/CBMizwFBVV95cUxOQWtKdGZGNkVyZ21ma1RRS2RWWmpZUU9LMm5Zb1NqUEJMZU5vR0xDTlVKVFFPMElWdFhvczA3X1FOOG42YV94M2JQVGNLSEU3cFRiRTI5WXVzTFlQS25DcDdaZmV4M2F3U3ozRlJtVl9rWkxxSjNTVGRvSDRqTVNiZXRhSFUtb0NUUUFmbGZHU2RobzFWUnUwTnZSNjNzbkJTejJuUHVTWkRKRk5UX1RhYW9YS2Jmem15VWJWbjZJOVdMTFdIdndtUkgzSXhXZGc?oc=5",
+      "https://news.google.com/rss/articles/CBMipwFBVV95cUxNMlVvZURVcXgyUzItM0xPUDMzREtSTFlpNV9HLWxSSjlrQk4tY1ItZGtLVndzRTQtbE9Yc1htdGs0Zk9GaHRpdjJMdVRGSjY1aE9rOF9sT1FRc0JaLUNsM08tbHhKUVl0T2JzLV9MRUFJd1ZTdUd1UTdFWjE1ajRQQlBZaXB3QncxZ2J3dFdRTXhiNzVaU0lQVmdCUnpTeTU3OUpvdnEwQQ?oc=5",
+      "https://news.google.com/rss/articles/CBMipAFBVV95cUxPZ1JHekhRZU5CLWpUTnRlLTZfLW9nRjZ2c2VWTVI1OWtXQkplNzBiMXA2NUVfMl9ibnBXN0ZjTDhxZDhoc3RqQWhhSXRFdzhDNTNKbVdZdEdHYTF4OVBSbDRYZ3p5MmZGZ2xzSmhpRjJHX2FDOXZZa2tIZUFBWGJFazc4SzRSMjdqaEpxNnU5elFsX1dheWVIWmZ4dDdna0hrSXluNw?oc=5",
+      "https://www.theweathernetwork.com/ca",
+      "https://www.amazon.ca/"
+    ],
+    "static_urls": [
+      "https://www.canadapost-postescanada.ca/",
+      "https://www.theweathernetwork.com/ca",
+      "https://www.canada.ca/en.html",
+      "https://www.cra-arc.gc.ca/",
+      "https://www.utoronto.ca/",
+      "https://www.td.com/",
+      "https://www.rbcroyalbank.com/",
+      "https://www.amazon.ca/"
+    ]
+  }
+}
