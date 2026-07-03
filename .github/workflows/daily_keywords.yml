@@ -34,7 +34,11 @@ jobs:
         run: python scripts/fetch_trends.py
 
       - name: Commit and Push All Data
+        env:
+          TARGET_BRANCH: main
         run: |
+          set -euo pipefail
+
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
@@ -50,6 +54,18 @@ jobs:
           # 策略：将两路数据的更新合并为一个原子提交
           git commit -m "chore(data): 🤖 自动同步全战区搜索词库 [$(date +'%Y-%m-%d')]"
 
-          # 先拉取远程最新再推送，防止与其他 workflow 冲突
-          git pull --rebase origin main
-          git push origin main
+          # 远端可能在 rebase 和 push 之间再次前进，重试可以自动追上最新 main
+          for attempt in 1 2 3 4 5; do
+            git fetch origin "${TARGET_BRANCH}"
+            git rebase "origin/${TARGET_BRANCH}"
+
+            if git push origin "HEAD:${TARGET_BRANCH}"; then
+              exit 0
+            fi
+
+            echo "Push failed on attempt ${attempt}; retrying after refetch..."
+            sleep $((attempt * 5))
+          done
+
+          echo "Push failed after 5 attempts."
+          exit 1
