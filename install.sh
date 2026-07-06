@@ -55,7 +55,7 @@ download_file() {
     local url="$1"
     local output="$2"
     local desc="${3:-文件}"
-    curl -fsSL --connect-timeout 10 --retry 3 "$url" -o "$output" 2>/dev/null
+    curl -fsSL --connect-timeout 10 --max-time 60 --retry 3 --retry-delay 2 "$url" -o "$output" 2>/dev/null
     if [ ! -s "$output" ]; then
         echo -e "${RED}❌ ${desc} 下载失败！${NC}"
         return 1
@@ -80,7 +80,7 @@ download_check() {
 # ----------------------------------------------------------
 # [版本信息]
 # ----------------------------------------------------------
-TARGET_VERSION=$(curl -fsSL --connect-timeout 5 --retry 2 "${REPO_RAW_URL}/version.txt?t=$(date +%s)" 2>/dev/null | grep "^AGENT_VERSION=" | cut -d'=' -f2 | tr -d '[:space:]')
+TARGET_VERSION=$(curl -fsSL --connect-timeout 5 --max-time 15 --retry 2 --retry-delay 2 "${REPO_RAW_URL}/version.txt?t=$(date +%s)" 2>/dev/null | grep "^AGENT_VERSION=" | cut -d'=' -f2 | tr -d '[:space:]' || true)
 TARGET_VERSION=${TARGET_VERSION:-"4.3.1"}
 
 # ==========================================================

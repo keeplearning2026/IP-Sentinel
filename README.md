@@ -20,7 +20,7 @@
 ## 快速安装
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/keeplearning2026/IP-Sentinel/main/install.sh)"
+bash -c "$(curl -fsSL --connect-timeout 10 --max-time 60 https://raw.githubusercontent.com/keeplearning2026/IP-Sentinel/main/install.sh)"
 ```
 
 安装过程交互式选择地区和配置 Telegram。
@@ -100,7 +100,7 @@ sudo systemctl start ip-sentinel-report.service
 ## 更新
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/keeplearning2026/IP-Sentinel/main/install.sh)"
+bash -c "$(curl -fsSL --connect-timeout 10 --max-time 60 https://raw.githubusercontent.com/keeplearning2026/IP-Sentinel/main/install.sh)"
 ```
 
 选择"安装/更新"即可，现有配置自动保留。

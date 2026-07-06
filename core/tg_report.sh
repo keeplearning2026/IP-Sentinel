@@ -159,7 +159,7 @@ DISPLAY_LOCAL_VER="$LOCAL_VER"
 REPORT_UTC_TIME=$(date -u "+%Y-%m-%d %H:%M:%S UTC")
 
 REPO_RAW_URL="https://raw.githubusercontent.com/keeplearning2026/IP-Sentinel/main"
-REMOTE_VER=$(curl -s -m 3 "${REPO_RAW_URL}/version.txt" | grep "^AGENT_VERSION=" | cut -d'=' -f2 | tr -d '[:space:]')
+REMOTE_VER=$(curl -s -m 3 "${REPO_RAW_URL}/version.txt" | grep "^AGENT_VERSION=" | cut -d'=' -f2 | tr -d '[:space:]' || true)
 DISPLAY_REMOTE_VER="$REMOTE_VER"
 [[ "$DISPLAY_REMOTE_VER" != v* && -n "$DISPLAY_REMOTE_VER" ]] && DISPLAY_REMOTE_VER="v${DISPLAY_REMOTE_VER}"
 
