@@ -62,7 +62,7 @@ if [ "$DIFF" -ge 2592000 ] || [ "$LAST_UPDATE" -eq 0 ]; then
     TMP_UA="/tmp/ip_sentinel_user_agents.$$"
     log "INFO" "开始刷新 User-Agent 池 (距上次更新 ${DIFF} 秒)..."
 
-    if curl -fsSL --connect-timeout 10 --retry 3 "${REPO_RAW_URL}/data/user_agents.txt?t=$(date +%s)" -o "$TMP_UA" 2>/dev/null; then
+    if curl -fsSL --connect-timeout 10 --max-time 60 --retry 3 --retry-delay 2 "${REPO_RAW_URL}/data/user_agents.txt?t=$(date +%s)" -o "$TMP_UA" 2>/dev/null; then
         if [ -s "$TMP_UA" ]; then
             LINE_COUNT=$(grep -v '^[[:space:]]*$' "$TMP_UA" | wc -l | tr -d ' ')
             if [ "$LINE_COUNT" -gt 0 ]; then
@@ -97,7 +97,7 @@ else
 
     TMP_KW="/tmp/ip_sentinel_${KEYWORD_FILE}.$$"
 
-    if curl -fsSL --connect-timeout 10 --retry 3 "${REPO_RAW_URL}/data/keywords/${KEYWORD_FILE}?t=$(date +%s)" -o "$TMP_KW" 2>/dev/null; then
+    if curl -fsSL --connect-timeout 10 --max-time 60 --retry 3 --retry-delay 2 "${REPO_RAW_URL}/data/keywords/${KEYWORD_FILE}?t=$(date +%s)" -o "$TMP_KW" 2>/dev/null; then
         if [ -s "$TMP_KW" ]; then
             LINE_COUNT=$(grep -v '^[[:space:]]*$' "$TMP_KW" | wc -l | tr -d ' ')
             if [ "$LINE_COUNT" -gt 0 ]; then
