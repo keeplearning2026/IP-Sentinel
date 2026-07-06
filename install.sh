@@ -618,7 +618,7 @@ ExecStart=/bin/bash ${INSTALL_DIR}/core/runner.sh
 User=root
 CPUSchedulingPolicy=idle
 IOSchedulingClass=idle
-TimeoutStartSec=600
+TimeoutStartSec=1800
 KillMode=control-group
 EOF
 
@@ -627,8 +627,9 @@ cat > /etc/systemd/system/ip-sentinel-runner.timer << EOF
 [Unit]
 Description=Timer for IP-Sentinel Runner (Lite)
 [Timer]
-OnCalendar=*-*-* *:00:00 UTC
-RandomizedDelaySec=2400
+OnCalendar=hourly
+AccuracySec=1min
+RandomizedDelaySec=1200
 Persistent=true
 Unit=ip-sentinel-runner.service
 [Install]
