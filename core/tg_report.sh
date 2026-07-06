@@ -91,7 +91,17 @@ fi
 # ==========================================================
 # 2. 日志分析
 # ==========================================================
-LOG_CONTENT=$(tail -n 1000 "$LOG_FILE" 2>/dev/null)
+SINCE_UTC=$(date -u -d '24 hours ago' '+%Y-%m-%d %H:%M:%S' 2>/dev/null || true)
+if [ -n "$SINCE_UTC" ] && [ -f "$LOG_FILE" ]; then
+    LOG_CONTENT=$(awk -v since="$SINCE_UTC" '
+        substr($0, 1, 1) == "[" && substr($0, 21, 5) == " UTC]" {
+            ts = substr($0, 2, 19)
+            if (ts >= since) print
+        }
+    ' "$LOG_FILE" 2>/dev/null)
+else
+    LOG_CONTENT=$(tail -n 1000 "$LOG_FILE" 2>/dev/null)
+fi
 
 if [ -z "$LOG_CONTENT" ]; then
     read -r -d '' MSG <<EOT
@@ -116,6 +126,7 @@ else
     if [ "$ENABLE_GOOGLE" == "true" ]; then
         GOOGLE_LOGS=$(echo "$LOG_CONTENT" | grep "\[Google")
         G_TOTAL=$(echo "$GOOGLE_LOGS" | grep "\[START\]" -c)
+        G_DONE=$(echo "$GOOGLE_LOGS" | grep "\[END" -c)
         G_SUCCESS=$(echo "$GOOGLE_LOGS" | grep "✅" -c)
         G_FAILED=$(echo "$GOOGLE_LOGS" | grep "❌" -c)
         G_WARN=$(echo "$GOOGLE_LOGS" | grep "⚠️" -c)
@@ -126,7 +137,7 @@ else
         MSG="$MSG
 
 🎯 **Google 区域纠偏**
-执行次数: ${G_TOTAL}
+执行次数: ${G_TOTAL} | 完成会话: ${G_DONE}
 ✅ 成功: ${G_SUCCESS} | ❌ 失败: ${G_FAILED} | ⚠️ 警告: ${G_WARN}
 胜率: **${G_RATE}%**"
     fi
