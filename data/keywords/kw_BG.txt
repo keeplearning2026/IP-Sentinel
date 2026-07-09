@@ -1,6 +1,15 @@
+нап
+dir
+пик
+нато
+radio
+9 юли
+труд
+pogoda
+wetter
+radio 1
 диагноза българия
 камелия нейкова
-wetter
 медия
 габриеле мини
 switzerland vs colombia
@@ -39,7 +48,6 @@ france vs paraguay
 wimbledon
 канада срещу мароко
 икономика
-pogoda
 политическа партия
 главна дирекция „борба с организираната престъпност“
 дъжд
@@ -90,11 +98,3 @@ france vs sweden
 sportal
 netherlands vs morocco
 кмет
-самсунг
-земетресение турция
-24
-29 юни
-десислава радева
-dunavmost.com
-българия
-първан симеонов
