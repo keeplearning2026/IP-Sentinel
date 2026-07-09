@@ -51,6 +51,12 @@ if command -v systemctl >/dev/null 2>&1; then
     rm -f /etc/systemd/system/ip-sentinel-keywords.service
     rm -f /etc/systemd/system/ip-sentinel-keywords.timer
     rm -f /etc/systemd/system/ip-sentinel-agent-daemon.service
+    rm -rf /etc/systemd/system/ip-sentinel-data.timer.d
+    rm -rf /etc/systemd/system/ip-sentinel-data.service.d
+    rm -rf /etc/systemd/system/ip-sentinel-updater.timer.d
+    rm -rf /etc/systemd/system/ip-sentinel-updater.service.d
+    rm -f /etc/systemd/system/timers.target.wants/ip-sentinel-data.timer
+    rm -f /etc/systemd/system/timers.target.wants/ip-sentinel-updater.timer
     systemctl daemon-reload
     systemctl reset-failed
 else
@@ -67,6 +73,7 @@ pkill -9 -f "python3.*webhook.py" >/dev/null 2>&1
 pkill -9 -f "webhook.py" >/dev/null 2>&1
 pkill -9 -f "runner.sh" >/dev/null 2>&1
 pkill -9 -f "updater.sh" >/dev/null 2>&1
+pkill -9 -f "daily.sh" >/dev/null 2>&1
 pkill -9 -f "tg_report.sh" >/dev/null 2>&1
 pkill -9 -f "mod_google.sh" >/dev/null 2>&1
 pkill -9 -f "mod_trust.sh" >/dev/null 2>&1

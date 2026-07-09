@@ -1,0 +1,39 @@
+name: Lite Static Checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  shell-and-timer-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Bash syntax checks
+        run: |
+          set -euo pipefail
+          bash -n install.sh
+          bash -n core/daily.sh
+          bash -n core/runner.sh
+          bash -n core/mod_google.sh
+          bash -n core/updater.sh
+          bash -n core/tg_report.sh
+          bash -n core/uninstall.sh
+
+      - name: Lite timer assertions
+        run: |
+          set -euo pipefail
+
+          grep -q '"daily.sh"' install.sh
+          grep -q 'ExecStart=/bin/bash ${INSTALL_DIR}/core/daily.sh' install.sh
+          grep -q 'OnCalendar=\*-\*-\* 04:30:00 UTC' install.sh
+
+          ! grep -q 'enable --now ip-sentinel-data.timer' install.sh
+          ! grep -q 'cat > /etc/systemd/system/ip-sentinel-data.service' install.sh
+          ! grep -q 'cat > /etc/systemd/system/ip-sentinel-data.timer' install.sh
+
+          grep -q 'DATA_UPDATE_SUMMARY' core/updater.sh
+          grep -q 'render_data_update_line' core/tg_report.sh

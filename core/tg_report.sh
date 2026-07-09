@@ -38,6 +38,78 @@ if [ -f "$LOCK_FILE" ]; then
 fi
 echo $(date +%s) > "$LOCK_FILE"
 
+parse_data_update_env_value() {
+    local value="${1:-}"
+
+    if [[ "$value" == \"*\" ]]; then
+        value="${value#\"}"
+        value="${value%\"}"
+    fi
+
+    value="${value//\\\"/\"}"
+    value="${value//\\\\/\\}"
+    printf '%s' "$value"
+}
+
+render_data_update_line() {
+    local state_file="${INSTALL_DIR}/state/data_update.env"
+    local now
+    local age
+    local status="unknown"
+    local summary="状态未知"
+    local updated_epoch="0"
+    local key
+    local value
+
+    if [ ! -s "$state_file" ]; then
+        echo "🧩 数据刷新: ⚠️ 暂无今日刷新记录"
+        return
+    fi
+
+    while IFS='=' read -r key value || [ -n "$key" ]; do
+        case "$key" in
+            DATA_UPDATE_STATUS)
+                status="$(parse_data_update_env_value "$value")"
+                ;;
+            DATA_UPDATE_SUMMARY)
+                summary="$(parse_data_update_env_value "$value")"
+                ;;
+            DATA_UPDATE_EPOCH)
+                updated_epoch="$(parse_data_update_env_value "$value")"
+                ;;
+        esac
+    done < "$state_file"
+
+    if ! [[ "$updated_epoch" =~ ^[0-9]+$ ]]; then
+        echo "🧩 数据刷新: ⚠️ 状态文件异常"
+        return
+    fi
+
+    now="$(date +%s)"
+    age=$((now - updated_epoch))
+
+    # 36 小时过期阈值：每日任务 + VPS 短暂离线容错。
+    if [ "$age" -gt 129600 ]; then
+        echo "🧩 数据刷新: ⚠️ 刷新状态过期"
+        return
+    fi
+
+    case "$status" in
+        ok)
+            echo "🧩 数据刷新: ✅ ${summary}"
+            ;;
+        degraded)
+            echo "🧩 数据刷新: ⚠️ ${summary}"
+            ;;
+        fail)
+            echo "🧩 数据刷新: ❌ ${summary}"
+            ;;
+        *)
+            echo "🧩 数据刷新: ⚠️ 状态未知"
+            ;;
+    esac
+}
+
 # ==========================================================
 # 1. 节点元数据
 # ==========================================================
@@ -157,6 +229,7 @@ DISPLAY_LOCAL_VER="$LOCAL_VER"
 [[ "$DISPLAY_LOCAL_VER" != v* && "$DISPLAY_LOCAL_VER" != "未知" ]] && DISPLAY_LOCAL_VER="v${DISPLAY_LOCAL_VER}"
 
 REPORT_UTC_TIME=$(date -u "+%Y-%m-%d %H:%M:%S UTC")
+DATA_UPDATE_LINE="$(render_data_update_line)"
 
 REPO_RAW_URL="https://raw.githubusercontent.com/keeplearning2026/IP-Sentinel/main"
 REMOTE_VER=$(curl -s -m 3 "${REPO_RAW_URL}/version.txt" | grep "^AGENT_VERSION=" | cut -d'=' -f2 | tr -d '[:space:]' || true)
@@ -166,7 +239,8 @@ DISPLAY_REMOTE_VER="$REMOTE_VER"
 MSG="$MSG
 ----------------------------
 🛡️ **系统状态**
-⏱️ 战报生成: \`${REPORT_UTC_TIME}\`"
+⏱️ 战报生成: \`${REPORT_UTC_TIME}\`
+${DATA_UPDATE_LINE}"
 
 if [ -n "$REMOTE_VER" ]; then
     if [ "$REMOTE_VER" != "$LOCAL_VER" ]; then
