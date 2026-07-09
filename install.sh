@@ -95,8 +95,8 @@ echo -e " 模式: ${CYAN}Google 区域纠偏 + Telegram 日报${NC}"
 echo -e " 版本: v${TARGET_VERSION}"
 echo -e " 特点:"
 echo -e "  • 可选地区的 Google 模块"
-echo -e "  • 自动关键词刷新 (每日从上游拉取)"
-echo -e "  • 仅保留 3 个 systemd timer"
+echo -e "  • 自动数据刷新 (关键词 / UA / 日志瘦身)"
+echo -e "  • 仅保留 2 个 systemd timer"
 echo -e "  • 不安装旧版 OTA / Trust / Webhook / Master"
 echo "========================================================"
 echo ""
@@ -409,17 +409,19 @@ mkdir -p "${INSTALL_DIR}/core"
 mkdir -p "${INSTALL_DIR}/data/keywords"
 mkdir -p "${INSTALL_DIR}/data/regions/${COUNTRY_ID}/${STATE_ID}"
 mkdir -p "${INSTALL_DIR}/logs"
+mkdir -p "${INSTALL_DIR}/state"
 
-# 下载 5 个核心脚本
+# 下载 6 个核心脚本
 CORE_FILES=(
     "runner.sh"
     "mod_google.sh"
     "tg_report.sh"
     "uninstall.sh"
     "updater.sh"
+    "daily.sh"
 )
 
-echo -e "  ${BOLD}下载核心脚本 (5个):${NC}"
+echo -e "  ${BOLD}下载核心脚本 (6个):${NC}"
 for script in "${CORE_FILES[@]}"; do
     echo -n "    • ${script}..."
     TMP_FILE="${SECURE_TMP}/${script}"
@@ -585,14 +587,23 @@ echo ""
 echo -e "${CYAN}[9/9] 注入 systemd 守护服务...${NC}"
 
 # 停止并清理旧服务
-systemctl stop ip-sentinel-runner.timer 2>/dev/null || true
-systemctl stop ip-sentinel-report.timer 2>/dev/null || true
-systemctl stop ip-sentinel-data.timer 2>/dev/null || true
-systemctl stop ip-sentinel-keywords.timer 2>/dev/null || true
-systemctl disable ip-sentinel-runner.timer 2>/dev/null || true
-systemctl disable ip-sentinel-report.timer 2>/dev/null || true
-systemctl disable ip-sentinel-data.timer 2>/dev/null || true
-systemctl disable ip-sentinel-keywords.timer 2>/dev/null || true
+for unit in \
+    ip-sentinel-runner.timer \
+    ip-sentinel-runner.service \
+    ip-sentinel-report.timer \
+    ip-sentinel-report.service \
+    ip-sentinel-data.timer \
+    ip-sentinel-data.service \
+    ip-sentinel-updater.timer \
+    ip-sentinel-updater.service \
+    ip-sentinel-keywords.timer \
+    ip-sentinel-keywords.service \
+    ip-sentinel-agent-daemon.service
+do
+    systemctl stop "$unit" 2>/dev/null || true
+    systemctl disable "$unit" 2>/dev/null || true
+done
+
 rm -f /etc/systemd/system/ip-sentinel-runner.service
 rm -f /etc/systemd/system/ip-sentinel-runner.timer
 rm -f /etc/systemd/system/ip-sentinel-report.service
@@ -604,6 +615,12 @@ rm -f /etc/systemd/system/ip-sentinel-keywords.timer
 rm -f /etc/systemd/system/ip-sentinel-updater.service
 rm -f /etc/systemd/system/ip-sentinel-updater.timer
 rm -f /etc/systemd/system/ip-sentinel-agent-daemon.service
+rm -rf /etc/systemd/system/ip-sentinel-data.timer.d
+rm -rf /etc/systemd/system/ip-sentinel-data.service.d
+rm -rf /etc/systemd/system/ip-sentinel-updater.timer.d
+rm -rf /etc/systemd/system/ip-sentinel-updater.service.d
+rm -f /etc/systemd/system/timers.target.wants/ip-sentinel-data.timer
+rm -f /etc/systemd/system/timers.target.wants/ip-sentinel-updater.timer
 
 # 创建 runner.service
 cat > /etc/systemd/system/ip-sentinel-runner.service << EOF
@@ -639,55 +656,28 @@ EOF
 # 创建 report.service
 cat > /etc/systemd/system/ip-sentinel-report.service << EOF
 [Unit]
-Description=IP-Sentinel Telegram Report Service (Lite)
+Description=IP-Sentinel Daily Service (Lite)
 After=network.target
 [Service]
 Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 SyslogIdentifier=ip-sentinel
 Type=oneshot
-ExecStart=/bin/bash ${INSTALL_DIR}/core/tg_report.sh
+ExecStart=/bin/bash ${INSTALL_DIR}/core/daily.sh
 User=root
 CPUSchedulingPolicy=idle
 IOSchedulingClass=idle
-TimeoutStartSec=600
+TimeoutStartSec=900
 KillMode=control-group
 EOF
 
-# 创建 report.timer (每天 16:00 UTC)
+# 创建 report.timer (每天 04:30 UTC)
 cat > /etc/systemd/system/ip-sentinel-report.timer << EOF
 [Unit]
-Description=Timer for IP-Sentinel Telegram Report (Lite)
+Description=Timer for IP-Sentinel Daily Task (Lite)
 [Timer]
-OnCalendar=*-*-* 16:00:00 UTC
-Unit=ip-sentinel-report.service
-[Install]
-WantedBy=timers.target
-EOF
-
-# 创建 data.service
-cat > /etc/systemd/system/ip-sentinel-data.service << EOF
-[Unit]
-Description=IP-Sentinel Lite Data Refresh
-After=network.target
-[Service]
-Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-SyslogIdentifier=ip-sentinel
-Type=oneshot
-ExecStart=/bin/bash ${INSTALL_DIR}/core/updater.sh
-User=root
-TimeoutStartSec=300
-KillMode=control-group
-EOF
-
-# 创建 data.timer (每天 03:30 UTC)
-cat > /etc/systemd/system/ip-sentinel-data.timer << EOF
-[Unit]
-Description=Timer for IP-Sentinel Lite Data Refresh
-[Timer]
-OnCalendar=*-*-* 03:30:00 UTC
-RandomizedDelaySec=1800
+OnCalendar=*-*-* 04:30:00 UTC
 Persistent=true
-Unit=ip-sentinel-data.service
+Unit=ip-sentinel-report.service
 [Install]
 WantedBy=timers.target
 EOF
@@ -695,11 +685,10 @@ EOF
 systemctl daemon-reload
 systemctl enable --now ip-sentinel-runner.timer
 systemctl enable --now ip-sentinel-report.timer
-systemctl enable --now ip-sentinel-data.timer
+systemctl reset-failed
 
 echo -e "  ${GREEN}✅ runner.timer 已启动 (每 1 小时)${NC}"
-echo -e "  ${GREEN}✅ report.timer 已启动 (每天 16:00 UTC)${NC}"
-echo -e "  ${GREEN}✅ data.timer 已启动 (每天 03:30 UTC)${NC}"
+echo -e "  ${GREEN}✅ report.timer 已启动 (每天 04:30 UTC，数据刷新 + 日报)${NC}"
 echo ""
 
 # ----------------------------------------------------------
@@ -723,15 +712,16 @@ echo ""
 echo -e " 4) 立即触发一次巡检:"
 echo -e "    ${CYAN}systemctl start ip-sentinel-runner.service${NC}"
 echo ""
-echo -e " 5) 手动触发数据刷新 (关键词 + UA):"
-echo -e "    ${CYAN}systemctl start ip-sentinel-data.service${NC}"
-echo -e "    ${CYAN}journalctl -u ip-sentinel-data.service -n 30 --no-pager${NC}"
+echo -e " 5) 手动触发每日任务 (数据刷新 + 日报):"
+echo -e "    ${CYAN}rm -f /opt/ip_sentinel/core/.report_lock${NC}"
+echo -e "    ${CYAN}systemctl start ip-sentinel-report.service${NC}"
+echo -e "    ${CYAN}journalctl -u ip-sentinel-report.service -n 160 --no-pager${NC}"
 echo ""
 echo -e " 6) 查看运行日志:"
 echo -e "    ${CYAN}tail -f /opt/ip_sentinel/logs/sentinel.log${NC}"
 echo ""
 echo -e " ${YELLOW}📌 说明:${NC}"
-echo -e " • VPS 每日 03:30 UTC 自动刷新用户代理 (30天一次) 和关键词 (每日)"
+echo -e " • VPS 每日 04:30 UTC 自动刷新数据并发送 Telegram 日报"
 echo -e " • Lite updater 不更新程序、region json、ip_probe、Trust、Quality"
 echo -e " • 刷新失败保留旧文件，不 fallback 到其他国家关键词"
 echo -e " • 如需更新区域 JSON，重新运行本脚本选择安装/更新"

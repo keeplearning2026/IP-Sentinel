@@ -14,7 +14,7 @@
 - 🎯 **Google 区域纠偏** — 模拟真实用户行为，逐步修正 IP 地理归属，解决"送中"问题
 - 📊 **Telegram 每日报告** — 每天自动推送节点状态、纠偏统计、执行快照
 - ⏱️ **systemd timer 全自动运行** — 无需手动干预，安装即跑
-- 🔄 **数据自动刷新** — 自动刷新纠偏所需数据文件，不进入 Telegram 日报
+- 🔄 **数据自动刷新** — 每日任务先刷新纠偏数据，再在 Telegram 日报显示一行摘要
 - 🪶 **极简低占用** — 无外部依赖（仅需 curl/jq），shell 原生实现
 
 ## 快速安装
@@ -61,8 +61,10 @@ tail -n 100 /opt/ip_sentinel/logs/sentinel.log
 # 手动触发一次 Google 纠偏
 sudo systemctl start ip-sentinel-runner.service
 
-# 手动触发一次日报
+# 手动触发一次每日任务（先刷新数据，再发送日报）
+sudo rm -f /opt/ip_sentinel/core/.report_lock
 sudo systemctl start ip-sentinel-report.service
+journalctl -u ip-sentinel-report.service -n 160 --no-pager
 ```
 
 ## Timer 说明
@@ -70,8 +72,9 @@ sudo systemctl start ip-sentinel-report.service
 | Timer | 频率 | 作用 |
 |-------|------|------|
 | `ip-sentinel-runner.timer` | 每 1 小时（随机延迟 0-20 分钟） | 执行 Google 区域纠偏 |
-| `ip-sentinel-report.timer` | 每天 16:00 UTC | 发送 Telegram 日报 |
-| `ip-sentinel-data.timer` | 每天 03:30 UTC | 刷新纠偏数据 |
+| `ip-sentinel-report.timer` | 每天 04:30 UTC | 执行每日任务：刷新数据并发送 Telegram 日报 |
+
+`ip-sentinel-report.timer` 触发 `core/daily.sh`；`daily.sh` 会先运行 `updater.sh`，再运行 `tg_report.sh`。
 
 ## Telegram 日报内容
 
@@ -94,8 +97,11 @@ sudo systemctl start ip-sentinel-report.service
 ----------------------------
 🛡️ 系统状态
 ⏱️ 战报生成: xxx
+🧩 数据刷新: ✅ 关键词库成功；UA 池跳过；日志清理成功
 当前运行版本: vX.X.X
 ```
+
+数据刷新摘要只显示关键词库、UA 池、日志清理的执行结果；不会展示文件名、数量或 timer 细节。
 
 ## 更新
 
@@ -124,8 +130,9 @@ sudo bash /opt/ip_sentinel/core/uninstall.sh
 systemctl status ip-sentinel-report.service --no-pager
 
 # 手动触发看报错
+sudo rm -f /opt/ip_sentinel/core/.report_lock
 sudo systemctl start ip-sentinel-report.service
-journalctl -u ip-sentinel-report.service -n 30 --no-pager
+journalctl -u ip-sentinel-report.service -n 160 --no-pager
 ```
 
 常见原因：Token/Chat ID 错误、Bot 未启动或被屏蔽、VPS 无法访问 api.telegram.org。
@@ -162,7 +169,7 @@ sudo apk add jq           # Alpine
 
 - Master-Agent 分布式架构
 - Trust / IP 信用净化
-- 关键词库 / UA 池 状态日报
+- 关键词库 / UA 池 文件名、数量等详细状态日报
 - OTA 热更新 / 中枢控制台
 - Webhook / agent_daemon
 
