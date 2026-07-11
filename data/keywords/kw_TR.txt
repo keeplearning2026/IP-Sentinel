@@ -1,3 +1,13 @@
+kia
+açığa satış
+halk tv canlı
+çankaya belediyesi
+wetter
+giresun hava durumu
+iş kazası
+altınordu fk
+ihale
+mahkeme
 bekçi alımı
 ismet acar
 milliyet
@@ -47,7 +57,6 @@ yatırımcı
 çirkin
 wm 2026
 ak parti
-giresun hava durumu
 birgün
 füze
 ingrid alexandra
@@ -89,12 +98,3 @@ donanımhaber
 tağşiş
 mersin hava durumu
 gvardiol
-world cup
-portugal
-leao
-diogo costa
-bernardo silva
-nuno mendes
-portugal – kroatien
-португалия – хорватия
-portekiz maç
