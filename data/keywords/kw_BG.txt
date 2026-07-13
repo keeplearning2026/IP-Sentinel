@@ -1,3 +1,13 @@
+благомир коцев
+радио
+radio
+труд
+nova
+dir
+topsport
+radio 1
+novini
+blitz
 боташ
 камион
 дрон
@@ -18,7 +28,6 @@ wc
 fifa
 courtois
 куртоа
-radio 1
 аржентина
 виктор орбан
 съединени щати
@@ -38,12 +47,9 @@ erling haaland
 иван иванов
 бони тайлър
 нап
-dir
 пик
 нато
-radio
 9 юли
-труд
 pogoda
 wetter
 диагноза българия
@@ -92,9 +98,3 @@ colombia vs ghana
 deroy duarte
 vozinha
 наталия асенова
-швейцария алжир
-симеон дянков
-швейцария срещу алжир
-hava durumu
-швеция
-времето варна
