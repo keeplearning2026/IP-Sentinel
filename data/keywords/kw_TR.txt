@@ -1,3 +1,13 @@
+inegöl hava durumu
+sozcu
+hava
+ankara hava durumu
+bolu hava durumu
+zonguldak hava durumu
+düzce hava durumu
+آبوهوا
+yabancı
+elektrikli araç
 memurlar net
 halkbank
 tcmb
@@ -46,7 +56,6 @@ pa
 acil iniş
 polis akademisi
 melisa aslı pamuk
-düzce hava durumu
 yusuf tekin
 ekonomi
 ebys
@@ -89,12 +98,3 @@ ankara nato zirvesi hangi yollar kapalı
 almanya için alternatif
 akademisyen
 france vs paraguay
-paraguay – frankreich
-haber61
-rahmi koç
-n'golo kanté
-konser
-yağış
-iyi parti
-paul onuachu
-esenler erokspor
