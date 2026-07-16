@@ -1,3 +1,13 @@
+meteo lyon
+meteo bordeaux
+meteo reims
+toulouse
+giorgia meloni
+weer
+voici
+bourse
+bbc news
+hava durumu
 europe 1
 ascenseur
 sept à huit
@@ -5,7 +15,6 @@ meteo montpellier
 meteo poitiers
 meteo angers
 vigilance forte canicule
-weer
 tgv
 tiempo
 daily mail
@@ -35,7 +44,6 @@ election miss guyane 2026
 championnat des nations
 harry
 deux-sèvres
-hava durumu
 centre de données
 bison fute samedi 11 juillet
 lune
@@ -90,11 +98,3 @@ bryan johnson
 rtve directo
 duc de sussex
 poubelle
-conducteur
-livret a
-navire
-resultat loto 6 juillet 2026
-donation
-la provence
-chine
-portugal vs spain world cup 2026
