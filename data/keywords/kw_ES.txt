@@ -1,14 +1,22 @@
+temperatura
+ok diario
+weer
+temps
+perro
+météo
+eduardo camavinga
+las provincias
+diario de burgos
+meteoritos
 ébola
 wetter
 michael olise
 manuel llamas fernández
 real salt lake - burnley
 el diario vasco
-weer
 juan carlos peinado
 la voz de galicia
 noticias
-temps
 tiempo
 candela peña
 mykee moves
@@ -78,7 +86,6 @@ aravind srinivas
 eitb
 boe
 unicaja
-las provincias
 rtve directo
 ferran adrià
 tve
@@ -91,10 +98,3 @@ diario de mallorca
 presupuesto
 codigo 10
 sverre magnus de noruega
-connor murphy
-juan del val y nuria roca
-koldo garcía izaguirre
-alfonso muñoz cuenca
-dan buettner
-xbox
-rodri bernardo silva
