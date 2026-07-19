@@ -1,3 +1,13 @@
+promosyon
+elektrik kesintisi
+pogoda
+didem arslan yılmaz
+hürriyet
+şok
+polis
+nefes gazetesi
+aydın
+cumhuriyet
 türkiye kadın millî voleybol takımı
 japonya
 samsun hava durumu
@@ -59,7 +69,6 @@ medyabar
 cnn türk
 bet365
 otomobil
-elektrik kesintisi
 wm spielplan
 istanbul büyükşehir belediye meclisi
 kıbrıs
@@ -79,7 +88,6 @@ mahkeme
 bekçi alımı
 ismet acar
 milliyet
-hürriyet
 motorine zam geldi
 whatsapp
 en son haber
@@ -90,11 +98,3 @@ erling haaland
 shavon shields
 pa
 çorum
-acil iniş
-polis akademisi
-melisa aslı pamuk
-yusuf tekin
-ekonomi
-ebys
-vakıfbank
-bloomberg
