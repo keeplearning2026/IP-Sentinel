@@ -1,3 +1,13 @@
+météo paris
+le monde
+xpeng l03 suv
+rtl2
+meteo nantes
+meteo angers
+amigo
+meteo rennes
+bfm tv
+horoscope du jour
 figaro
 est republicain
 l'etape du tour
@@ -38,7 +48,6 @@ ascenseur
 sept à huit
 meteo montpellier
 meteo poitiers
-meteo angers
 vigilance forte canicule
 tgv
 tiempo
@@ -89,12 +98,3 @@ edf
 maillot jaune tour de france
 lenny martinez
 france 2 direct
-françois letexier
-800 serpents chine
-extrader
-matchs amicaux
-francetv
-flight radar
-avion paris
-la depeche
-prix carburant
