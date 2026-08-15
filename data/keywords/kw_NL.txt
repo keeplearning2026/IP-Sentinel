@@ -1,13 +1,19 @@
+flights
+pizza
+sushi
+games
+sports
+news
+swimming
+fitness
+time
+movies
 cristiano ronaldo
 brandweerman
 iga świątek
-swimming
-fitness
 concerts
-sports
 cycling
 calendar
-games
 schuilplaats argentinie superrijken
 virus koeien
 bom ontploft plopsaland
@@ -20,7 +26,6 @@ vallende sterren vannacht
 meteoriet
 muk kinderdementie
 112 enschede
-time
 travel
 ns abonnement
 val van paard
@@ -37,14 +42,12 @@ lieke klaver
 youri baas
 wilco van schaik
 stand jong psv - fc volendam
-news
 china
 tatort
 hulpdiensten
 droogte duitsland
 rafael van der vaart
 sven mislintat
-flights
 inter miami - monterrey
 morgan freeman
 stroomstoring venray
@@ -58,7 +61,6 @@ holstein kiel
 donald trump
 luchtmacht
 portugese oorlogsschepen kwallen
-movies
 music
 jobs
 broer
@@ -96,5 +98,3 @@ hantavirus
 ray dalio
 fabrizio romano
 fatbike
-hart van nederland
-kristina liutova

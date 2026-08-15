@@ -1,3 +1,13 @@
+vuelos
+deportes
+mapas
+pizza
+crimea congo
+cine
+bancos
+riot
+música
+tiempo en granada
 hospitales
 terremoto colombia magnitud
 cienciano - botafogo
@@ -9,10 +19,6 @@ twins - phillies
 islam makhachev
 garnacho
 noticias
-cine
-vuelos
-pizza
-música
 playa
 a
 australia vs bangladesh
@@ -43,7 +49,6 @@ hbo
 américa - atlético nacional
 posiciones de sport boys contra alianza lima
 empleos
-mapas
 m
 universitario - sporting cristal
 ayyoub bouaddi
@@ -93,8 +98,3 @@ tormentas valencia
 posiciones de alianza lima contra alianza atlético
 extinción de incendios
 calor
-netflix top movies right now
-mls
-junior - millonarios
-terremoto napoles
-josé luis calama
