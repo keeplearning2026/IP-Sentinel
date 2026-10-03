@@ -1,3 +1,13 @@
+ankara
+ekrem imamoğlu
+mehmet yalçınkaya
+yunus yıldırım
+belediye meclisi üyesi
+tarım ve kırsal kalkınmayı destekleme kurumu
+wetter
+antalya hava durumu
+погода
+izmir büyükşehir belediye başkanı
 pasaport
 film ekimi
 serkan bayram
@@ -34,7 +44,6 @@ ziraat bankası
 ferhat gündoğdu
 virgil van dijk
 şanlıurfa hava durumu
-ankara
 pastırma yazı
 toryum
 çöl
@@ -89,12 +98,3 @@ arnaud denis
 zehra güneş
 mebbis
 tolga kalender
-orkun kökçü
-afyon hava durumu
-başkan
-eskişehir hava durumu
-manisa hava durumu
-hürriyet
-trt haber canlı
-mynet
-cnn türk canlı
