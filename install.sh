@@ -77,11 +77,366 @@ download_check() {
     return 0
 }
 
+# BEGIN TELEGRAM_SETUP
+# Telegram 请求只保留错误摘要；原始更新和 Token 不输出到终端。
+tg_read() {
+    printf '%s' "$1" >&2
+    if [[ "${3:-}" == hidden ]]; then
+        if IFS= read -rs "$2"; then
+            printf '\n' >&2
+            return 0
+        fi
+    elif IFS= read -r "$2"; then
+        return 0
+    fi
+    printf '\n输入结束，安装已取消，原配置未变。\n' >&2
+    return 1
+}
+
+tg_valid_token() {
+    [[ "$1" =~ ^[0-9]+:[A-Za-z0-9_-]+$ ]]
+}
+
+tg_valid_chat_id() {
+    # 不对 ID 做整数运算；同时兼容原配置中的公开频道 @username。
+    [[ "$1" =~ ^-?[0-9]+$ || "$1" =~ ^@[A-Za-z][A-Za-z0-9_]*$ ]]
+}
+
+tg_api_request() {
+    local method="$1" payload="${2:-}" deadline="${3:-$((SECONDS + 30))}"
+    payload=${payload:-'{}'}
+    local attempt http_status remaining request_time pause error_code
+    local response_file="${SECURE_TMP}/telegram-response.json"
+    TG_RESPONSE='' TG_ERROR='' TG_ERROR_KIND=temporary
+    for attempt in 1 2 3; do
+        remaining=$((deadline - SECONDS))
+        if ((remaining <= 0)); then break; fi
+        request_time=10
+        if ((remaining < request_time)); then request_time=$remaining; fi
+        # 不使用 -f，保留 Telegram 4xx 的 JSON 错误摘要；不输出 curl 错误中的 URL。
+        if http_status=$(curl -s --connect-timeout 5 --max-time "$request_time" \
+            -X POST -H 'Content-Type: application/json' -d "$payload" \
+            -o "$response_file" -w '%{http_code}' \
+            "https://api.telegram.org/bot${TG_TOKEN}/${method}" 2>/dev/null); then
+            TG_RESPONSE=$(cat "$response_file")
+            error_code=''
+            if jq -e 'type == "object" and (.ok | type == "boolean")' \
+                >/dev/null 2>&1 <<< "$TG_RESPONSE"; then
+                if [[ "$http_status" == 2?? ]] && jq -e '.ok == true' \
+                    >/dev/null 2>&1 <<< "$TG_RESPONSE"; then
+                    TG_ERROR_KIND=''
+                    return 0
+                fi
+                error_code=$(jq -r '.error_code // empty' <<< "$TG_RESPONSE")
+                TG_ERROR=$(jq -r --arg token "$TG_TOKEN" '(.description // "Telegram 请求失败") | tostring |
+                    split($token) | join("[REDACTED]") |
+                    gsub("[\u0000-\u001f\u007f-\u009f]"; " ") | .[0:240]' <<< "$TG_RESPONSE")
+            else
+                TG_ERROR='Telegram 返回了无法解析的响应'
+            fi
+            case "${error_code:-$http_status}" in
+                401|404) TG_ERROR_KIND=credentials; return 1 ;;
+                409) TG_ERROR_KIND=conflict; return 1 ;;
+                429|5??) TG_ERROR_KIND=temporary ;;
+                *)
+                    if [[ -n "$error_code" || "$http_status" == 4?? ]]; then
+                        TG_ERROR_KIND=target
+                        return 1
+                    fi
+                    TG_ERROR_KIND=temporary
+                    ;;
+            esac
+        else
+            TG_RESPONSE=''
+            TG_ERROR='Telegram 网络请求失败或超时'
+            TG_ERROR_KIND=temporary
+        fi
+        if ((attempt == 3)); then break; fi
+        pause=2
+        if [[ -n "$TG_RESPONSE" ]]; then
+            pause=$(jq -r '(.parameters.retry_after // 2) |
+                if type == "number" and . >= 0 then ceil else 2 end' \
+                <<< "$TG_RESPONSE" 2>/dev/null) || pause=2
+        fi
+        remaining=$((deadline - SECONDS))
+        # 不为限流无限等待，也不突破调用方的总时间预算。
+        if ((pause > 30 || pause >= remaining)); then break; fi
+        sleep "$pause"
+    done
+    TG_ERROR=${TG_ERROR:-Telegram 请求等待超时}
+    return 1
+}
+
+tg_manual_chat_id() {
+    local input
+    printf '改为手动输入 Chat ID（支持负数群组/频道 ID，也支持 @channel）。\n'
+    while :; do
+        tg_read '请输入 Chat ID（q 取消安装）: ' input || return 1
+        if [[ "$input" == q ]]; then return 1; fi
+        if tg_valid_chat_id "$input"; then
+            CHAT_ID=$input
+            return 0
+        fi
+        printf 'Chat ID 不能为空，且必须是正负数字 ID 或 @channel 用户名。\n'
+    done
+}
+
+tg_select_candidate() {
+    local automatic="${1:-false}" count choice index
+    count=$(jq 'length' <<< "$TG_CANDIDATES") || return 1
+    if ((count == 0)); then
+        tg_manual_chat_id
+        return $?
+    fi
+    # 只渲染会话元数据；过滤名称中的终端控制字符。
+    jq -r 'to_entries[] | "  \(.key + 1)) ID=\(.value.id) 类型=\(.value.type) 名称=\(.value.name)"' \
+        <<< "$TG_CANDIDATES"
+    if [[ "$automatic" == true && "$count" == 1 ]]; then
+        CHAT_ID=$(jq -r '.[0].id' <<< "$TG_CANDIDATES")
+        printf '已自动选择本轮识别到的唯一会话。\n'
+        return 0
+    fi
+    while :; do
+        tg_read "请选择会话 [1-${count}]，m 手动输入，q 取消: " choice || return 1
+        case "$choice" in
+            m) tg_manual_chat_id; return $? ;;
+            q) return 1 ;;
+        esac
+        if [[ "$choice" =~ ^[1-9][0-9]{0,5}$ ]] && ((10#$choice <= count)); then
+            index=$((10#$choice - 1))
+            CHAT_ID=$(jq -r --argjson index "$index" '.[$index].id' <<< "$TG_CANDIDATES")
+            return 0
+        fi
+        printf '请选择列表中的有效序号，不会自动猜测接收目标。\n'
+    done
+}
+
+tg_nonce() {
+    od -An -N12 -tx1 /dev/urandom | tr -d ' \n'
+}
+
+tg_discover_chat() {
+    local nonce action round deadline offset=0 batch_count matches
+    TG_CANDIDATES='[]'
+    if ! tg_api_request getWebhookInfo; then
+        printf '无法检查 Telegram 接收状态：%s。\n' "$TG_ERROR"
+        if [[ "$TG_ERROR_KIND" == credentials ]]; then return 1; fi
+        tg_manual_chat_id
+        return $?
+    fi
+    if jq -e '(.result.url // "") != ""' >/dev/null <<< "$TG_RESPONSE"; then
+        printf '机器人已启用 Webhook，无法使用 getUpdates；安装器不会删除或修改 Webhook。\n'
+        tg_manual_chat_id
+        return $?
+    fi
+    nonce=$(tg_nonce) || return 1
+    printf '机器人：@%s\n链接：https://t.me/%s\n' "$BOT_USERNAME" "$BOT_USERNAME"
+    printf '私聊：打开以下本轮启动链接，点击 Start：\nhttps://t.me/%s?start=%s\n' "$BOT_USERNAME" "$nonce"
+    printf '也可以在私聊中发送 /start %s\n' "$nonce"
+    printf '群组：先添加机器人，再发送 /start@%s %s\n' "$BOT_USERNAME" "$nonce"
+    printf '频道：将机器人设为管理员并授予发帖权限，再发布 /start@%s %s\n' "$BOT_USERNAME" "$nonce"
+    printf '识别码只用于本轮绑定，历史消息不会被自动选中。\n'
+    printf '请使用专用机器人。自动检测会读取并确认待处理更新；共用机器人请选择 m 手动配置。\n'
+    tg_read '完成后按 Enter 开始检测（每轮最多 90 秒），m 手动输入，q 取消: ' action || return 1
+    case "$action" in
+        m) tg_manual_chat_id; return $? ;;
+        q) return 1 ;;
+    esac
+    for round in 1 2; do
+        deadline=$((SECONDS + 90))
+        while ((SECONDS < deadline)); do
+            if ! tg_api_request getUpdates "{\"offset\":${offset},\"limit\":100,\"timeout\":0}" "$deadline"; then
+                printf '自动检测失败：%s。\n' "$TG_ERROR"
+                if [[ "$TG_ERROR_KIND" == credentials ]]; then return 1; fi
+                if [[ "$TG_ERROR_KIND" == conflict ]]; then
+                    printf 'Webhook 或其他轮询程序可能正在接收更新；请使用手动配置。\n'
+                fi
+                tg_manual_chat_id
+                return $?
+            fi
+            if ! jq -e '.result | type == "array"' >/dev/null <<< "$TG_RESPONSE"; then
+                printf '自动检测响应格式不正确。\n'
+                tg_manual_chat_id
+                return $?
+            fi
+            # 不设置 allowed_updates，保留机器人的原订阅设置。
+            # 只接受携带本轮随机码的 /start，消息正文不进入候选列表。
+            matches=$(jq -c --arg nonce "$nonce" --arg bot "$BOT_USERNAME" '
+                [.result[] | (.message // .channel_post // empty) |
+                 select(.text == ("/start " + $nonce) or .text == ("/start@" + $bot + " " + $nonce)) |
+                 .chat | select(.type == "private" or .type == "group" or .type == "supergroup" or .type == "channel") |
+                 {id: (.id | tostring), type,
+                  name: ((.title // .username // .first_name // "未命名") | tostring |
+                         gsub("[\u0000-\u001f\u007f-\u009f]"; " ") | .[0:120])}]' <<< "$TG_RESPONSE") || return 1
+            TG_CANDIDATES=$(jq -cn --argjson old "$TG_CANDIDATES" --argjson new "$matches" \
+                '$old + $new | unique_by(.id)') || return 1
+            batch_count=$(jq '.result | length' <<< "$TG_RESPONSE")
+            if ((batch_count > 0)); then
+                # 算术只用于 update_id 游标，绝不用于 Chat ID。
+                offset=$(jq '[.result[].update_id] | max + 1' <<< "$TG_RESPONSE")
+            fi
+            # 先读完满页，避免第二页的会话被遗漏。
+            if ((batch_count == 100)); then continue; fi
+            if [[ "$TG_CANDIDATES" != '[]' ]]; then
+                tg_select_candidate true
+                return $?
+            fi
+            if ((deadline - SECONDS > 3)); then sleep 3; else break; fi
+        done
+        if ((round == 1)); then
+            printf '本轮未发现携带识别码的会话，请检查 Start 命令、群组权限或机器人的更新订阅设置。\n'
+            tg_read '按 Enter 重试一次（最多 90 秒），m 手动输入，q 取消: ' action || return 1
+            case "$action" in
+                m) break ;;
+                q) return 1 ;;
+            esac
+        fi
+    done
+    tg_manual_chat_id
+}
+
+tg_test_target() {
+    local payload action
+    while :; do
+        payload=$(jq -cn --arg cid "$CHAT_ID" \
+            --arg text 'IP-Sentinel 安装测试：Telegram 日报接收目标已确认。' \
+            '{chat_id: $cid, text: $text}') || return 1
+        if tg_api_request sendMessage "$payload"; then
+            printf '✅ Telegram 安装测试消息发送成功。\n'
+            TG_SETUP_VERIFIED=true
+            return 0
+        fi
+        printf '测试消息失败：%s。\n' "$TG_ERROR"
+        if [[ "$TG_ERROR_KIND" == credentials ]]; then
+            printf 'Token 已失效，请重新运行安装器输入有效 Token；原配置未变。\n'
+            return 1
+        fi
+        if [[ "$TG_ERROR_KIND" == temporary ]]; then
+            printf 'Telegram 暂时不可达或服务暂不可用。选择 k 保存并继续后，日报可能发送失败。\n'
+        fi
+        while :; do
+            tg_read 'r 重试发送，s 重新选择，a 重新检测，m 手动输入，q 取消（临时故障可选 k 保存并继续）: ' action || return 1
+            case "$action" in
+                r) break ;;
+                s) tg_select_candidate false || return 1; break ;;
+                a) tg_discover_chat || return 1; break ;;
+                m) tg_manual_chat_id || return 1; break ;;
+                q) return 1 ;;
+                k)
+                    if [[ "$TG_ERROR_KIND" == temporary ]]; then
+                        printf '⚠️ 将保存尚未通过发送测试的配置；日报可能发送失败。\n'
+                        TG_SETUP_VERIFIED=false
+                        return 0
+                    fi
+                    printf '当前是明确的 API/接收目标错误，请修正后再保存。\n'
+                    ;;
+                *) printf '请输入有效选项。\n' ;;
+            esac
+        done
+    done
+}
+
+configure_telegram() {
+    # 即使用 bash -x 启动安装器，也不将凭据写入执行跟踪。
+    set +x
+    local input action invalid_attempts=0 existing_valid=false
+    EXISTING_TG_TOKEN='' EXISTING_CHAT_ID=''
+    TG_CANDIDATES='[]' TG_SETUP_VERIFIED=false
+    if [[ -f "$CONFIG_FILE" ]]; then
+        # 仅读取字段，不 source 旧配置，避免执行配置中的 shell 内容。
+        EXISTING_TG_TOKEN=$(awk -F '"' '$1 == "TG_TOKEN=" {print $2; exit}' "$CONFIG_FILE")
+        EXISTING_CHAT_ID=$(awk -F '"' '$1 == "CHAT_ID=" {print $2; exit}' "$CONFIG_FILE")
+    fi
+    if tg_valid_token "$EXISTING_TG_TOKEN" && tg_valid_chat_id "$EXISTING_CHAT_ID"; then
+        existing_valid=true
+    fi
+    printf '创建机器人：打开 @BotFather，发送 /newbot，按提示设置名称和以 bot 结尾的用户名，再复制 Bot Token。\n'
+    printf 'Token 输入默认隐藏，不会显示现有 Token。\n'
+    while ((invalid_attempts < 3)); do
+        tg_read "请输入 Bot Token${EXISTING_TG_TOKEN:+（回车沿用现有）}: " input hidden || return 1
+        TG_TOKEN=${input:-$EXISTING_TG_TOKEN}
+        if ! tg_valid_token "$TG_TOKEN"; then
+            invalid_attempts=$((invalid_attempts + 1))
+            printf 'Token 为空或格式无效（%s/3），请重新输入。\n' "$invalid_attempts"
+            continue
+        fi
+        while :; do
+            if tg_api_request getMe; then
+                BOT_USERNAME=$(jq -r '.result | select(.is_bot == true) | .username // empty' <<< "$TG_RESPONSE") || return 1
+                if [[ ! "$BOT_USERNAME" =~ ^[A-Za-z0-9_]+$ ]]; then
+                    printf 'Telegram 未返回有效机器人身份，原配置未变。\n'
+                    return 1
+                fi
+                break 2
+            fi
+            printf 'Token 验证未通过：%s。\n' "$TG_ERROR"
+            if [[ "$TG_ERROR_KIND" == credentials ]]; then
+                invalid_attempts=$((invalid_attempts + 1))
+                printf 'Token 无效（%s/3），请重新输入。\n' "$invalid_attempts"
+                break
+            fi
+            printf '尚未验证的新 Token 不会写入配置。\n'
+            if [[ "$existing_valid" == true && "$TG_TOKEN" == "$EXISTING_TG_TOKEN" && "$TG_ERROR_KIND" == temporary ]]; then
+                printf '可输入 k 原样保留现有 Telegram 配置并继续；日报可能发送失败。\n'
+            fi
+            tg_read 'r 重试验证，e 重新输入 Token，q 取消: ' action || return 1
+            case "$action" in
+                r) continue ;;
+                e) break ;;
+                k)
+                    if [[ "$existing_valid" == true && "$TG_TOKEN" == "$EXISTING_TG_TOKEN" && "$TG_ERROR_KIND" == temporary ]]; then
+                        CHAT_ID=$EXISTING_CHAT_ID
+                        TG_API_URL="https://api.telegram.org/bot${TG_TOKEN}/sendMessage"
+                        printf '⚠️ 已保留现有 Telegram 配置；日报可能发送失败。\n'
+                        return 0
+                    fi
+                    ;;
+                q) return 1 ;;
+            esac
+        done
+    done
+    if ((invalid_attempts >= 3)); then
+        printf 'Token 连续三次无效，安装已取消，原配置未变。\n'
+        return 1
+    fi
+    TG_API_URL="https://api.telegram.org/bot${TG_TOKEN}/sendMessage"
+    printf '✅ Token 有效：@%s（https://t.me/%s）\n' "$BOT_USERNAME" "$BOT_USERNAME"
+    CHAT_ID=''
+    if [[ "$existing_valid" == true && "$TG_TOKEN" == "$EXISTING_TG_TOKEN" ]]; then
+        printf '现有接收目标：%s\n' "$EXISTING_CHAT_ID"
+        while :; do
+            tg_read '按 Enter 保留原 Chat ID，a 重新检测，m 手动输入，q 取消: ' action || return 1
+            case "$action" in
+                '') CHAT_ID=$EXISTING_CHAT_ID; break ;;
+                a) tg_discover_chat || return 1; break ;;
+                m) tg_manual_chat_id || return 1; break ;;
+                q) return 1 ;;
+                *) printf '请输入有效选项。\n' ;;
+            esac
+        done
+    else
+        # Token 实际改变或没有原 Chat ID 时，绝不默认沿用旧接收目标。
+        tg_discover_chat || return 1
+    fi
+    tg_test_target
+}
+
+save_config_atomic() {
+    local temporary_config
+    temporary_config=$(mktemp "${CONFIG_FILE}.XXXXXX") || return 1
+    if ! chmod 600 "$temporary_config" || ! cat > "$temporary_config" ||
+        ! mv -f -- "$temporary_config" "$CONFIG_FILE"; then
+        rm -f -- "$temporary_config"
+        return 1
+    fi
+}
+# END TELEGRAM_SETUP
+
 # ----------------------------------------------------------
 # [版本信息]
 # ----------------------------------------------------------
 TARGET_VERSION=$(curl -fsSL --connect-timeout 5 --max-time 15 --retry 2 --retry-delay 2 "${REPO_RAW_URL}/version.txt?t=$(date +%s)" 2>/dev/null | grep "^AGENT_VERSION=" | cut -d'=' -f2 | tr -d '[:space:]' || true)
-TARGET_VERSION=${TARGET_VERSION:-"4.3.1"}
+TARGET_VERSION=${TARGET_VERSION:-"4.3.2"}
 
 # ==========================================================
 # 主流程开始
@@ -359,44 +714,7 @@ echo ""
 # ----------------------------------------------------------
 echo -e "${CYAN}[7/9] 配置 Telegram 日报...${NC}"
 
-# 如果 config.conf 已存在，尝试读取现有配置作为默认值
-EXISTING_TG_TOKEN=""
-EXISTING_CHAT_ID=""
-if [ -f "$CONFIG_FILE" ]; then
-    EXISTING_TG_TOKEN=$(grep "^TG_TOKEN=" "$CONFIG_FILE" | cut -d'"' -f2 2>/dev/null || echo "")
-    EXISTING_CHAT_ID=$(grep "^CHAT_ID=" "$CONFIG_FILE" | cut -d'"' -f2 2>/dev/null || echo "")
-fi
-
-read -rp "请输入 Telegram Bot Token${EXISTING_TG_TOKEN:+" (回车保持现有)"}: " TG_TOKEN_INPUT
-TG_TOKEN="${TG_TOKEN_INPUT:-$EXISTING_TG_TOKEN}"
-
-if [ -z "$TG_TOKEN" ]; then
-    echo -e "${RED}❌ Telegram Bot Token 不能为空。${NC}"
-    exit 1
-fi
-
-read -rp "请输入 Telegram Chat ID${EXISTING_CHAT_ID:+" (回车保持现有)"}: " CHAT_ID_INPUT
-CHAT_ID="${CHAT_ID_INPUT:-$EXISTING_CHAT_ID}"
-
-if [ -z "$CHAT_ID" ]; then
-    echo -e "${RED}❌ Chat ID 不能为空。${NC}"
-    exit 1
-fi
-
-# 验证 Telegram Bot Token
-echo -n "  🕵️  正在验证 Telegram Bot Token..."
-TG_VALID_URL="https://api.telegram.org/bot${TG_TOKEN}/getMe"
-TG_TEST=$(curl -s -m 5 "$TG_VALID_URL" 2>/dev/null)
-if echo "$TG_TEST" | grep -q '"ok":true'; then
-    BOT_NAME=$(echo "$TG_TEST" | grep -o '"username":"[^"]*"' | cut -d'"' -f4)
-    echo -e " ${GREEN}✅ (${BOT_NAME})${NC}"
-else
-    echo -e ""
-    echo -e "${YELLOW}⚠️  Token 验证失败 (可能为网络问题或 Token 无效)。${NC}"
-    echo -e "${YELLOW}   将继续安装，但请确认 Token 正确。${NC}"
-fi
-
-TG_API_URL="https://api.telegram.org/bot${TG_TOKEN}/sendMessage"
+configure_telegram
 echo ""
 
 # ----------------------------------------------------------
@@ -532,7 +850,7 @@ echo -e "${CYAN}  生成配置文件...${NC}"
 NODE_HASH=$(echo "${SAFE_PUBLIC_IP:-127.0.0.1}" | md5sum | cut -c 1-4 | tr 'a-z' 'A-Z' 2>/dev/null || echo "0000")
 NODE_NAME="lite-$(hostname | tr -cd 'a-zA-Z0-9' | cut -c 1-6)-${NODE_HASH}"
 
-cat > "$CONFIG_FILE" << EOF
+save_config_atomic << EOF
 # IP-Sentinel Lite 配置 (生成时间: $(date '+%Y-%m-%d %H:%M:%S'))
 AGENT_VERSION="$TARGET_VERSION"
 
@@ -557,7 +875,7 @@ ENABLE_GOOGLE="true"
 
 # Telegram 配置
 TG_TOKEN="${TG_TOKEN}"
-TG_API_URL="https://api.telegram.org/bot${TG_TOKEN}/sendMessage"
+TG_API_URL="${TG_API_URL}"
 CHAT_ID="${CHAT_ID}"
 
 # 网络配置
@@ -697,6 +1015,9 @@ echo ""
 echo "========================================================"
 echo -e " ${GREEN}${BOLD}✅ Google Lite Standalone 安装完成！${NC}"
 echo "========================================================"
+if [[ "$TG_SETUP_VERIFIED" != true ]]; then
+    printf '⚠️ Telegram 配置已保留/保存，但未通过本次发送测试，日报可能发送失败。\n'
+fi
 echo ""
 echo -e " ${BOLD}验证命令:${NC}"
 echo ""

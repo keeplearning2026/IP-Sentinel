@@ -37,3 +37,23 @@ jobs:
 
           grep -q 'DATA_UPDATE_SUMMARY' core/updater.sh
           grep -q 'render_data_update_line' core/tg_report.sh
+
+      - name: Telegram setup assertions
+        run: |
+          set -euo pipefail
+          grep -q '^configure_telegram$' install.sh
+          grep -q '^tg_manual_chat_id()' install.sh
+          grep -q 'read -rs' install.sh
+          grep -q 'getUpdates' install.sh
+          grep -q 'getWebhookInfo' install.sh
+          grep -q 'save_config_atomic << EOF' install.sh
+          ! grep -q 'deleteWebhook' install.sh
+          ! grep -q 'grep.*"ok"' install.sh
+          version=$(cut -d= -f2 version.txt | tr -d '[:space:]')
+          grep -Fq "TARGET_VERSION=\${TARGET_VERSION:-\"$version\"}" install.sh
+
+      - name: Telegram discovery and manual fallback tests
+        run: |
+          set -euo pipefail
+          command -v jq
+          python3 -B -m unittest discover -s tests -p 'test_telegram_setup.py' -v

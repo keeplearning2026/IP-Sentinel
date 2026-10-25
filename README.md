@@ -29,14 +29,34 @@ bash -c "$(curl -fsSL --connect-timeout 10 --max-time 60 https://raw.githubuserc
 
 ## 配置 Telegram
 
-安装时输入 Bot Token 和 Chat ID，写入 `/opt/ip_sentinel/config.conf`：
+新安装通常只需要输入 **Bot Token**，Chat ID 由安装器通过 Telegram 自动检测。
+
+1. 在 Telegram 打开 [@BotFather](https://t.me/BotFather)，发送 `/newbot`。
+2. 按提示设置机器人名称和以 `bot` 结尾的唯一用户名，复制 BotFather 返回的 Token。
+3. 将 Token 粘贴到安装器。输入默认隐藏；安装器通过 `getMe` 验证后显示机器人用户名和链接。
+4. 私聊接收日报时，打开安装器显示的本轮启动链接并点击 **Start**。也可以发送安装器给出的 `/start <识别码>` 命令。
+5. 群组接收日报时，先添加机器人，再在目标群组发送安装器给出的 `/start@机器人用户名 <识别码>`。普通消息可能受隐私模式限制。
+6. 频道接收日报时，将机器人设为管理员并授予发帖权限，再在目标频道发布上述带识别码的命令。
+7. 返回安装器按 Enter。每轮检测最多等待 90 秒，约每 3 秒查询一次；没有发现会话时可重试一次。
+8. 本轮只有一个会话时自动选择；多个会话时显示 ID、类型和名称，必须手动选择。安装器发送测试消息，成功后才保存配置。
+
+识别码用于防止历史消息被误认为本次接收目标，消息正文不会输出到终端。建议使用专用机器人；自动检测会读取并确认待处理更新，如果机器人还有其他接收消息的程序，请在检测前选择 `m` 手动输入 Chat ID。安装器不更改机器人的更新订阅设置。
+
+自动检测失败、没有收到带识别码的消息、Webhook 已启用或存在其他轮询程序时，安装器会提示“改为手动输入 Chat ID”。手动输入支持私聊 ID、负数群组/频道 ID 和公开频道的 `@channel` 用户名。手动填写不会绕过测试发送；错误目标或权限不足时，可以重新选择、重新检测或重新填写。安装器不会删除 Webhook。
+
+无效 Token 最多允许输入三次。网络、限流或服务端临时故障会有上限地重试；未验证的新 Token 不会写入配置。如果测试发送仅遇到临时故障，可以明确选择 `k` 保存并继续，**此时日报可能发送失败**。
+
+升级时，Token 和 Chat ID 均可回车沿用；即使再次粘贴相同 Token，也不会自动更换接收目标。输入不同 Token 后会重新检测 Chat ID。验证原 Token 时若 Telegram 暂时不可达，可选择 `k` 保留原 Telegram 配置并继续，同样会提示日报可能发送失败。
+
+最终配置仍保存在 `/opt/ip_sentinel/config.conf`，字段与原版本兼容：
 
 ```bash
 TG_TOKEN="123456:ABC..."
+TG_API_URL="https://api.telegram.org/bot123456:ABC.../sendMessage"
 CHAT_ID="987654321"
 ```
 
-如需修改，编辑配置文件后重启 report timer：
+如需更换 Token 或接收目标，重新运行安装器并选择重新检测或手动输入即可。手动编辑配置时，更换 Token 应同步更新 `TG_API_URL`：
 
 ```bash
 sudo nano /opt/ip_sentinel/config.conf
