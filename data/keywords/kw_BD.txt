@@ -1,9 +1,18 @@
+icc
+kl rahul
+scene 2026
+shadman islam
+14
+taskin ahmed
+axar patel
+bd vs wi
+অর্থ
+তৌহিদ হৃদয়
 শাবনূর
 মালয়েশিয়া
 সংবাদ
 নাঈম হাসান
 david miller
-bd vs wi
 zimbabwe vs afghanistan
 সরকার
 brazil football
@@ -20,7 +29,6 @@ brian bennett
 রাধিকা আপ্টে
 haley stevens
 jj gabriel
-kl rahul
 আর্জেন্টিনা
 মাদ্রাসা শিক্ষা অধিদপ্তর
 বিসিএস পরীক্ষা
@@ -43,7 +51,6 @@ karnali yaks vs kathmandu gurkhas
 প্রাথমিক শিক্ষা
 আজকের স্বর্ণের দাম ২২ ক্যারেট ভরি
 ৭ নভেম্বর
-14
 বিশ্ববিদ্যালয়
 test
 david warner
@@ -91,10 +98,3 @@ zimbabwe vs india
 পদোন্নতি
 সাদমান ইসলাম
 সেনাবাহিনী
-সঞ্চয়
-স্মার্টফোন
-বাংলাদেশ বনাম ওয়েস্ট ইন্ডিজ
-pakistan national cricket team
-pakistan vs sri lanka
-sa vs aus
-beatrice keul
